@@ -1,1059 +1,1030 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GLOW Studio & Cosmetics - บริการแต่งหน้าโปรเฟสชันนอล & เครื่องสำอางแบรนด์เนม</title>
-  
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    /* ==========================================
-       1. GLOBAL VARIABLES & RESET
-       ========================================== */
-    :root {
-      --bg-cream: #FAF6F0;
-      --pink-pastel: #F8E8EE;
-      --pink-accent: #E8A0BF;
-      --pink-dark: #C7789B;
-      --purple-pastel: #E3DFFD;
-      --gold-accent: #D4AF37;
-      --text-dark: #332C27;
-      --text-muted: #665C54;
-      --white: #FFFFFF;
-      --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
-      --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
-      --radius: 16px;
-      --transition: all 0.3s ease;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Kanit', sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg-cream);
-      color: var(--text-dark);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ==========================================
-       2. NAVIGATION BAR
-       ========================================== */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.04);
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--pink-accent);
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.2rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 400;
-      font-size: 0.95rem;
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
-      color: var(--pink-accent);
-    }
-
-    .btn-nav {
-      background: var(--pink-accent);
-      color: var(--white) !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 20px;
-      font-weight: 500 !important;
-    }
-
-    .btn-nav:hover {
-      background: var(--pink-dark);
-    }
-
-    /* ==========================================
-       3. REUSABLE COMPONENTS & BUTTONS
-       ========================================== */
-    section {
-      padding: 6rem 8% 3rem;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-title h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.8rem 2.2rem;
-      background: var(--pink-accent);
-      color: var(--white);
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(232, 160, 191, 0.4);
-      transition: var(--transition);
-    }
-
-    .btn-primary:hover {
-      background: var(--pink-dark);
-      transform: translateY(-2px);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    /* ==========================================
-       4. SECTION 1: HERO BANNER
-       ========================================== */
-    .hero {
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #FAF6F0 0%, #F8E8EE 100%);
-      padding-top: 5rem;
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
-      color: var(--text-dark);
-    }
-
-    .hero-text p {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-    }
-
-    .hero-img-box {
-      position: relative;
-    }
-
-    .hero-img-box img {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .badge-experience {
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      background: var(--white);
-      padding: 1rem 1.5rem;
-      border-radius: 15px;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .badge-experience i {
-      font-size: 2rem;
-      color: var(--gold-accent);
-    }
-
-    /* ==========================================
-       5. SECTION 2: ABOUT ARTIST
-       ========================================== */
-    .about-img img {
-      width: 100%;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .about-details h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--text-dark);
-    }
-
-    .about-details p {
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .cert-list {
-      list-style: none;
-      margin-top: 1.5rem;
-    }
-
-    .cert-list li {
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .cert-list i {
-      color: var(--pink-accent);
-    }
-
-    /* ==========================================
-       6. SECTION 3: LOOKBOOK & PRICING
-       ========================================== */
-    .look-card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
-
-    .look-body {
-      padding: 1.5rem;
-    }
-
-    .look-body h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .look-body p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .price-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #eee;
-      padding-top: 1rem;
-      margin-top: 1rem;
-    }
-
-    .price-amount {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--pink-dark);
-    }
-
-    /* ==========================================
-       7. SECTION 4: GALLERY
-       ========================================== */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      height: 320px;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.08);
-    }
-
-    /* ==========================================
-       8. SECTION 5: COSMETICS STORE
-       ========================================== */
-    .product-card {
-      text-align: center;
-      padding: 1.5rem;
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .product-price {
-      color: var(--pink-dark);
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin: 0.5rem 0 1rem;
-    }
-
-    /* ==========================================
-       9. SECTION 6: BOOKING SYSTEM
-       ========================================== */
-    .booking-wrapper {
-      background: var(--white);
-      padding: 3rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .booking-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-group.full-width {
-      grid-column: span 2;
-    }
-
-    .form-group label {
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-
-    .form-group input, .form-group select, .form-group textarea {
-      padding: 0.8rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      outline: none;
-      font-size: 0.95rem;
-      transition: var(--transition);
-    }
-
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--pink-accent);
-      box-shadow: 0 0 0 3px rgba(232, 160, 191, 0.2);
-    }
-
-    /* ==========================================
-       10. SECTION 7: REVIEWS
-       ========================================== */
-    .review-card {
-      padding: 2rem;
-      background: var(--white);
-    }
-
-    .stars {
-      color: var(--gold-accent);
-      margin-bottom: 1rem;
-    }
-
-    .client-info {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .client-info img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    /* ==========================================
-       11. SECTION 8: BEAUTY BLOG
-       ========================================== */
-    .blog-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .blog-body {
-      padding: 1.5rem;
-    }
-
-    .blog-date {
-      font-size: 0.85rem;
-      color: var(--pink-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    /* ==========================================
-       12. SECTION 9: FAQ
-       ========================================== */
-    .faq-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      background: var(--white);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .faq-item h4 {
-      color: var(--pink-dark);
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-
-    /* ==========================================
-       13. SECTION 10: CONTACT & FOOTER
-       ========================================== */
-    .contact-container {
-      background: var(--white);
-      padding: 3rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .info-item i {
-      width: 45px;
-      height: 45px;
-      background: var(--pink-pastel);
-      color: var(--pink-dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-
-    footer {
-      background: #2D2724;
-      color: #B5AAA1;
-      padding: 3rem 8% 1.5rem;
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    footer p {
-      font-size: 0.9rem;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .navbar { padding: 1rem 4%; }
-      .nav-links { display: none; }
-      .hero-content { grid-template-columns: 1fr; }
-      .hero-text h1 { font-size: 2.5rem; }
-      .booking-form { grid-template-columns: 1fr; }
-      .form-group.full-width { grid-column: span 1; }
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLOW Studio & Cosmetics - บริการแต่งหน้าโปรเฟสชันนอล & เครื่องสำอางแบรนด์เนม</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           1. GLOBAL VARIABLES & RESET
+           ========================================== */
+        :root {
+            --primary: #d4a373;
+            --primary-dark: #bc8a5f;
+            --secondary: #faedcd;
+            --accent: #e76f51;
+            --bg-light: #fefae0;
+            --bg-white: #ffffff;
+            --text-dark: #2b2d42;
+            --text-muted: #6c757d;
+            --border-color: #e9ecef;
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 15px 30px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* ==========================================
+           2. BUTTONS & BADGES
+           ========================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* ==========================================
+           3. NAVIGATION
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 400;
+            color: var(--text-dark);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* ==========================================
+           4. HERO SECTION
+           ========================================== */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            background: linear-gradient(180deg, var(--bg-light) 0%, rgba(255,255,255,1) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ==========================================
+           5. ARTIST PROFILE (FREDDY)
+           ========================================== */
+        .artist-section {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-lg);
+            padding: 60px;
+            margin: 40px 0;
+        }
+
+        .artist-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .artist-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .artist-content h3 {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .artist-title {
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .artist-bio {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .artist-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            font-weight: 500;
+        }
+
+        .badge-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================
+           6. MAKEUP LOOKS & PRICES
+           ========================================== */
+        .looks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .look-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .look-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .look-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .look-info {
+            padding: 25px;
+        }
+
+        .look-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .look-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            min-height: 48px;
+        }
+
+        .look-price-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* ==========================================
+           7. GALLERY SECTION
+           ========================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ==========================================
+           8. COSMETICS PRODUCTS
+           ========================================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .product-brand {
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0 10px;
+        }
+
+        /* ==========================================
+           9. REVIEWS & TESTIMONIALS
+           ========================================== */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: var(--radius-md);
+            position: relative;
+        }
+
+        .stars {
+            color: #ffb703;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* ==========================================
+           10. ARTICLES & FAQ
+           ========================================== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            margin-bottom: 15px;
+            padding: 20px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           11. FOOTER
+           ========================================== */
+        footer {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 70px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-grid, .artist-grid {
+                grid-template-columns: 1fr;
+            }
+            .artist-img {
+                height: 380px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- ==========================================
-       1. NAVBAR
-       ========================================== -->
-  <nav class="navbar">
-    <a href="#" class="logo">GLOW<span>.</span> Studio</a>
-    <ul class="nav-links">
-      <li><a href="#about">เกี่ยวกับช่าง</a></li>
-      <li><a href="#looks">ลุค & ราคา</a></li>
-      <li><a href="#gallery">ผลงาน</a></li>
-      <li><a href="#shop">สินค้าแบรนด์</a></li>
-      <li><a href="#reviews">รีวิว</a></li>
-      <li><a href="#blog">บทความ</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">ติดต่อ</a></li>
-      <li><a href="#booking" class="btn-nav">จองคิวแต่งหน้า</a></li>
-    </ul>
-  </nav>
-
-  <!-- ==========================================
-       2. HERO BANNER
-       ========================================== -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>เนรมิตลุคสวยสะกดสายตา ในวันสำคัญของคุณ</h1>
-        <p>บริการแต่งหน้าโดยช่างมืออาชีพระดับประเทศ พร้อมสกินแคร์และเมคอัพเตรียมผิวสูตรพิเศษเฉพาะแบรนด์ GLOW Cosmetics เพื่อผิวเนียนกริบ ติดทนยาวนานตลอดวัน</p>
-        <div style="display:flex; gap:1rem;">
-          <a href="#booking" class="btn-primary">จองคิวรับบริการ</a>
-          <a href="#looks" class="btn-primary" style="background:white; color:var(--text-dark); border:1px solid #ddd;">ดูลุคแต่งหน้า</a>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">GLOW<span>.Studio</span></a>
+            <ul class="nav-menu">
+                <li><a href="#artist" class="nav-link">เกี่ยวกับช่าง</a></li>
+                <li><a href="#looks" class="nav-link">ลุค & ราคา</a></li>
+                <li><a href="#gallery" class="nav-link">ผลงาน</a></li>
+                <li><a href="#products" class="nav-link">สินค้าแบรนด์</a></li>
+                <li><a href="#reviews" class="nav-link">รีวิว</a></li>
+                <li><a href="#articles" class="nav-link">บทความ</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">ติดต่อ</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">จองคิวแต่งหน้า</a>
         </div>
-      </div>
-      <div class="hero-img-box">
-        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&auto=format&fit=crop" alt="GLOW Studio Makeup">
-        <div class="badge-experience">
-          <i class="fa-solid fa-award"></i>
-          <div>
-            <strong>ประสบการณ์กว่า 10 ปี</strong>
-            <p style="font-size:0.85rem; color:var(--text-muted);">แต่งหน้ามาแล้วกว่า 3,000+ ท่าน</p>
-          </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>รังสรรค์ความงามที่เป็นคุณ <br><span style="color: var(--primary-dark);">อย่างเพอร์เฟกต์</span></h1>
+                    <p>บริการแต่งหน้าเจ้าสาว ออกงาน ถ่ายแบบ โดยช่างแต่งหน้ามืออาชีพ พร้อมคัดสรรเครื่องสำอางแบรนด์เนมชั้นนำระดับโลก เพื่อผิวหน้าเปล่งออร่าตลอดทั้งวัน</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#looks" class="btn btn-primary">เลือกลุคแต่งหน้า</a>
+                        <a href="#artist" class="btn btn-outline">รู้จักคุณเฟรดดี้</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>10+</h3>
+                            <p>ปีประสบการณ์</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>2,500+</h3>
+                            <p>ลูกค้าประทับใจ</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <p>เครื่องสำอางแท้</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-img-wrapper">
+                    <!-- รูปคนแต่งหน้าสวยงาม หน้าตรง คมชัด -->
+                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1000&q=80" alt="แต่งหน้าโปรเฟสชันนอล" class="hero-img">
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-       3. ABOUT ARTIST
-       ========================================== -->
-  <section id="about">
-    <div class="section-title">
-      <h2>เกี่ยวกับช่างแต่งหน้า</h2>
-      <p>ผู้อยู่เบื้องหลังความงดงามของเจ้าสาวและดาราเซเลบริตี้มากมาย</p>
-    </div>
-    <div class="grid-2">
-      <div class="about-img">
-        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop" alt="Master Makeup Artist">
-      </div>
-      <div class="about-details">
-        <h3>คุณเชอร์รี่ (Master Artist & Founder)</h3>
-        <p>ผู้เชี่ยวชาญด้านการแต่งหน้าปรับโครงหน้า ปรับสมดุลผิว และงานผิวเนียนใสฉ่ำวาวสไตล์ธรรมชาติ ด้วยเทคนิคพิเศษเฉพาะตัวที่ได้รับการรับรองจากสถาบันแต่งหน้าระดับโลกทั้งในยุโรปและเกาหลี</p>
-        <p>คุณเชอร์รี่ยังเป็นผู้คิดค้นและพัฒนาสกินแคร์แบรนด์ **GLOW Cosmetics** ที่ช่วยเตรียมผิวหน้าของลูกค้าให้พร้อมสำหรับการแต่งหน้า เพื่อให้เครื่องสำอางติดทนนาน 18 ชั่วโมงโดยไม่เป็นคราบ</p>
-        <ul class="cert-list">
-          <li><i class="fa-solid fa-circle-check"></i> ประกาศนียบัตรขั้นสูง สถาบันแต่งหน้า London Fashion Makeup</li>
-          <li><i class="fa-solid fa-circle-check"></i> ช่างแต่งหน้ายอดเยี่ยมสำหรับเจ้าสาวประจำปี 2024</li>
-          <li><i class="fa-solid fa-circle-check"></i> ผู้เชี่ยวชาญด้านการผสมเฉดสีรองพื้นสำหรับผิวคนไทย</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       4. LOOKBOOK & PRICING (10 ลุคยอดฮิต)
-       ========================================== -->
-  <section id="looks" style="background:var(--pink-pastel); border-radius:30px;">
-    <div class="section-title">
-      <h2>ลุคแต่งหน้า & อัตราค่าบริการ</h2>
-      <p>เลือกลุคที่ใช่ สะท้อนตัวตนในแบบที่คุณอยากเป็น</p>
-    </div>
-    <div class="grid-3">
-      
-      <!-- Look 1 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&auto=format&fit=crop" alt="ลุคสายฝอ Glam">
-        <div class="look-body">
-          <h3>1. ลุคสายฝอ Glam Inter</h3>
-          <p>เบ้าตาทึบเฉดดิ้งชัด คอนทัวร์กรอบหน้าเป๊ะ ปากอวบอิ่มเซ็กซี่ระดับรันเวย์</p>
-          <div class="price-box">
-            <div class="price-amount">฿3,500</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- ARTIST SECTION (คุณเฟรดดี้) -->
+    <section id="artist" class="section-padding">
+        <div class="container">
+            <div class="artist-section">
+                <div class="artist-grid">
+                    <!-- รูปช่างแต่งหน้ากำลังแต่งหน้าให้ลูกค้าอย่างตั้งใจ -->
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="คุณเฟรดดี้ Master Artist" class="artist-img">
+                    <div class="artist-content">
+                        <h3>คุณเฟรดดี้ (Master Artist & Founder)</h3>
+                        <span class="artist-title">ผู้เชี่ยวชาญด้านการแต่งหน้าปรับโครงหน้า ปรับสมดุลผิว และงานผิวเนียนใสฉ่ำวาว</span>
+                        <p class="artist-bio">
+                            คุณเฟรดดี้จบการศึกษาด้านศิลปะและการแต่งหน้าโปรเฟสชันนอล มีประสบการณ์ในวงการแฟชั่น รันเวย์ และงานแต่งงานระดับพรีเมียมกว่า 10 ปี ด้วยเทคนิคเฉพาะตัวในการเน้นจุดเด่น ดึงเสน่ห์ของลูกค้าแต่ละท่านออกมาอย่างเป็นธรรมชาติที่สุด
+                        </p>
+                        <p class="artist-bio">
+                            นอกจากนี้ คุณเฟรดดี้ยังเป็นผู้คิดค้นและพัฒนาสกินแคร์แบรนด์ **GLOW Cosmetics** ที่ช่วยเตรียมผิวหน้าของลูกค้าให้พร้อมสำหรับการแต่งหน้า เพื่อให้เครื่องสำอางติดทนนาน 18 ชั่วโมงโดยไม่เป็นคราบ
+                        </p>
+                        <div class="artist-badges">
+                            <div class="badge-item">
+                                <i class="fa-solid fa-award"></i>
+                                <span>ประกาศนียบัตรขั้นสูง สถาบันแต่งหน้า London Fashion Makeup</span>
+                            </div>
+                            <div class="badge-item">
+                                <i class="fa-solid fa-crown"></i>
+                                <span>ช่างแต่งหน้ายอดเยี่ยมสำหรับเจ้าสาวประจำปี 2024</span>
+                            </div>
+                            <div class="badge-item">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>ผู้เชี่ยวชาญด้านการผสมเฉดสีรองพื้นสำหรับผิวคนไทย</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 2 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=500&auto=format&fit=crop" alt="ลุคผู้ดีอังกฤษ">
-        <div class="look-body">
-          <h3>2. ลุคสตรีทผู้ดีอังกฤษ (British Classic)</h3>
-          <p>เน้นงานผิวธรรมชาติ เรียบหรู ละมุน โทนสีนู้ดส้มอมชมพู สวยผู้ดีสไตล์ลอนดอน</p>
-          <div class="price-box">
-            <div class="price-amount">฿3,800</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- LOOKS & PRICES (9 ลุค - รูปคนแต่งหน้าจริงไม่ซ้ำ) -->
+    <section id="looks" class="section-padding" style="background-color: #fafafa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>9 ลุคแต่งหน้ายอดนิยม</h2>
+                <p>เลือกสไตล์ที่เหมาะกับโอกาสพิเศษของคุณ รังสรรค์ด้วยผลิตภัณฑ์พรีเมียม</p>
+            </div>
+            <div class="looks-grid">
+                
+                <!-- 1. สายฝอ Glam -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="สายฝอ Glam" class="look-img">
+                    <div class="look-info">
+                        <h3>1. ลุคสายฝอจัดเต็ม (Hollywood Glam)</h3>
+                        <p>คอนทัวร์กรอบหน้าคมชัด คิ้วตั้งฟู สโมกกี้อายโทนน้ำตาลทอง ปากอวบอิ่มทรงพุ่ม</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿3,500</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. สตรีทอังกฤษ -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80" alt="สตรีทอังกฤษ" class="look-img">
+                    <div class="look-info">
+                        <h3>2. ลุคสตรีทอังกฤษ (London Chic)</h3>
+                        <p>แต่งหน้าสไตล์ชาวยุโรป เรียบหรู ดูแพง งานผิว Semi-matte คุมโทนนู้ดเบจผู้ดี</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿3,000</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. เจ้าสาวชุดไทย -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="เจ้าสาวชุดไทย" class="look-img">
+                    <div class="look-info">
+                        <h3>3. ลุคเจ้าสาวชุดไทยพิธีเช้า</h3>
+                        <p>เน้นความหวานละมุน งานผิวเนียนละเอียด โทนส้มอิฐ-ส้มพาสเทล ขับผิวออร่า</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿8,500</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. เกาหลีโกลว์ -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="เกาหลีโกลว์" class="look-img">
+                    <div class="look-info">
+                        <h3>4. ลุคเกาหลีโกลว์ (K-Glass Skin)</h3>
+                        <p>งานผิวฉ่ำวาวอิ่มน้ำ ดอลลี่อายใสสไตล์เกาหลี ปากกระจับดูอ่อนเยาว์</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿2,800</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. เจ้าสาวชุดราตรี -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="เจ้าสาวชุดราตรี" class="look-img">
+                    <div class="look-info">
+                        <h3>5. ลุคเจ้าสาวชุดราตรี (Modern Bridal)</h3>
+                        <p>ลุคหรูหราออร่าพุ่ง แต่งตาประกายชิมเมอร์ ละมุนตา ไม่ดรอปตลอดคืน</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿9,500</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. รับปริญญา -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="รับปริญญา" class="look-img">
+                    <div class="look-info">
+                        <h3>6. ลุครับปริญญาเรียบหรู</h3>
+                        <p>แต่งหน้าแน่น คุมมัน กันเหงื่อ กันน้ำ สวยเป๊ะ ทนทานถ่ายรูปขึ้นกล้องกลางแจ้ง</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿2,500</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. ออกงาน Gala -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="ออกงาน Gala Night" class="look-img">
+                    <div class="look-info">
+                        <h3>7. ลุคออกงาน Gala Night</h3>
+                        <p>แต่งหน้าโดดเด่นสู้แสงไฟงานราตรี เน้นดวงตาทรงเสน่ห์ ลิปสติกสีชัดติดทน</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿3,200</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. ถ่ายแบบ Editorial -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80" alt="ถ่ายแบบ Editorial" class="look-img">
+                    <div class="look-info">
+                        <h3>8. ลุคถ่ายแบบ & Studio (High Fashion)</h3>
+                        <p>เทคนิคแต่งหน้าลงรายละเอียดพิเศษเพื่อกล้อง HD เก็บกรอบหน้า มิติชัดทุกมุม</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿4,000</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. เพื่อนเจ้าสาว -->
+                <div class="look-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" alt="เพื่อนเจ้าสาว" class="look-img">
+                    <div class="look-info">
+                        <h3>9. ลุคเพื่อนเจ้าสาว (Bridesmaid Soft)</h3>
+                        <p>แต่งหน้าคุมธีมงาน แต่งโทนพาสเทลสดใส ไม่แย่งซีนเจ้าสาวแต่ยังคงความสวยเป๊ะ</p>
+                        <div class="look-price-bar">
+                            <span class="price">฿2,200</span>
+                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 3 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&auto=format&fit=crop" alt="ลุคเจ้าสาวไทย">
-        <div class="look-body">
-          <h3>3. ลุคเจ้าสาวชุดไทย (Thai Bridal)</h3>
-          <p>ประณีต งดงาม คิ้วเรียวสวย คมเข้ม เข้ากับเครื่องทองและชุดไทยอย่างลงตัว</p>
-          <div class="price-box">
-            <div class="price-amount">฿8,500</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>แกลเลอรีผลงาน</h2>
+                <p>ภาพผลงานจริงโดยไม่มีการรีทัช เพื่อแสดงงานผิวที่แท้จริง</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=600&q=80" alt="Work 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" alt="Work 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Work 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Work 4">
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 4 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=500&auto=format&fit=crop" alt="ลุคเกาหลี">
-        <div class="look-body">
-          <h3>4. ลุคเกาหลีโกลว์ (K-Glass Skin)</h3>
-          <p>งานผิวฉ่ำวาวอิ่มน้ำ ดอลลี่อายใสตากลมโต สีปากระเรื่อดูอ่อนเยาว์</p>
-          <div class="price-box">
-            <div class="price-amount">฿3,000</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- BRAND COSMETICS -->
+    <section id="products" class="section-padding" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>เครื่องสำอางแบรนด์เนมที่เราใช้</h2>
+                <p>มั่นใจในคุณภาพ ความเป็นธรรมชาติติดทน และปลอดภัยต่อผิวของคุณ</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=80" alt="Dior Foundation" class="product-img">
+                    <span class="product-brand">DIOR</span>
+                    <h4 class="product-title">Forever Skin Glow Foundation</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">รองพื้นงานผิวเรียบเนียนฉ่ำวาวระดับไฮเอนด์</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=500&q=80" alt="Charlotte Tilbury Powder" class="product-img">
+                    <span class="product-brand">CHARLOTTE TILBURY</span>
+                    <h4 class="product-title">Airbrush Flawless Finish</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">แป้งอัดแข็งเบลอรูขุมขน นุ่มละมุนไร้ที่ติ</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=80" alt="TOM FORD Eyeshadow" class="product-img">
+                    <span class="product-brand">TOM FORD BEAUTY</span>
+                    <h4 class="product-title">Eye Color Quad Eyeshadow</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">พาเลตต์อายแชโดว์พิกเมนต์แน่น หรูหรา</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=80" alt="GLOW Primer" class="product-img">
+                    <span class="product-brand">GLOW COSMETICS</span>
+                    <h4 class="product-title">Prep & Prime Miracle Serum</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">เซรั่มเตรียมผิวก่อนแต่งหน้า สูตรคุณเฟรดดี้</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 5 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500&auto=format&fit=crop" alt="ลุคเจ้าสาวสากล">
-        <div class="look-body">
-          <h3>5. ลุคเจ้าสาวชุดราตรี (Modern Bridal)</h3>
-          <p>ลุคหรูหราออร่าพุ่ง แต่งตาประกายชิมเมอร์ ละมุนตา ไม่ดรอปตลอดคืน</p>
-          <div class="price-box">
-            <div class="price-amount">฿8,500</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- REVIEWS -->
+    <section id="reviews" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>เสียงสะท้อนจากลูกค้า</h2>
+                <p>ความประทับใจจริงจากเจ้าสาวและลูกค้าที่เคยใช้บริการกับคุณเฟรดดี้</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"แต่งหน้าวันแต่งงานกับคุณเฟรดดี้ ประทับใจมากค่ะ หน้าไม่ดรอปเลยตั้งแต่ 6 โมงเช้าจนจบงานดึก เพื่อนๆ ชมว่าสวยหวานธรรมชาติสุดๆ"</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="คุณมุก" class="client-avatar">
+                        <div>
+                            <h4 style="font-size: 1rem;">คุณมุก & คุณนนท์</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">เจ้าสาวงานแต่งงาน</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"จองลุคสายฝอกับคุณเฟรดดี้ไปออกงาน Gala ค่ะ คอนทัวร์เป๊ะมาก ถ่ายรูปขึ้นกล้องสุดๆ เครื่องสำอางที่ใช้หอมและเบาสบายหน้ามากค่ะ"</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="คุณแพรวา" class="client-avatar">
+                        <div>
+                            <h4 style="font-size: 1rem;">คุณแพรวา</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">งาน Gala Night</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"แต่งหน้ารับปริญญากับคุณเฟรดดี้ ตากแดดทั้งวันเหงื่อออกเยอะมาก แต่เครื่องสำอางยังติดทน หน้าไม่เป็นคราบเลย ประทับใจมากๆ ครับ"</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" alt="คุณเจน" class="client-avatar">
+                        <div>
+                            <h4 style="font-size: 1rem;">คุณบอส</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">รับปริญญา ม.ธรรมศาสตร์</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 6 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&auto=format&fit=crop" alt="ลุครับปริญญา">
-        <div class="look-body">
-          <h3>6. ลุครับปริญญาเรียบหรู</h3>
-          <p>แต่งหน้าแน่น คุมมัน กันเหงื่อ กันน้ำ สวยเป๊ะทนทานถ่ายรูปขึ้นกล้องกลางแจ้ง</p>
-          <div class="price-box">
-            <div class="price-amount">฿2,800</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- ARTICLES -->
+    <section id="articles" class="section-padding" style="background-color: #fafafa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>บทความ & เคล็ดลับบิวตี้</h2>
+                <p>ความรู้การดูแลผิวและการแต่งหน้าจากประสบการณ์ตรงของคุณเฟรดดี้</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="เตรียมผิว" class="blog-img">
+                    <div class="blog-content">
+                        <h4>5 วิธีเตรียมผิวก่อนวันแต่งงาน 7 วัน ให้เครื่องสำอางติดทน</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">การเตรียมผิวสำคัญกว่าการแต่งหน้า เคล็ดลับเพิ่มความฉ่ำน้ำลดความมัน...</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" alt="เลือกลุค" class="blog-img">
+                    <div class="blog-content">
+                        <h4>เลือกลุคแต่งหน้าอย่างไรให้เข้ากับรูปหน้าและสไตล์ชุดราตรี</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">เทคนิคการวิเคราะห์โครงหน้าและการจับคู่โทนสีเมกอัปให้ส่งเสริมกัน...</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 7 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1522337094846-8a83859283f6?w=500&auto=format&fit=crop" alt="ลุคออกงาน Gala">
-        <div class="look-body">
-          <h3>7. ลุคออกงาน Gala Night</h3>
-          <p>โดดเด่นกลางแสงไฟด้วยการไฮไลท์เน้นจุดรับแสง ปากเรดคลาสสิกหรือพิงค์โกลว์</p>
-          <div class="price-box">
-            <div class="price-amount">฿3,500</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- FAQ -->
+    <section id="faq" class="section-padding">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-title">
+                <h2>คำถามที่พบบ่อย (FAQ)</h2>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: ควรจองคิวแต่งหน้าล่วงหน้านานเท่าไร?</div>
+                <div class="faq-answer">A: สำหรับคิวเจ้าสาวแนะนำจองล่วงหน้า 3-6 เดือนครับ ส่วนงานออกงานทั่วไปหรือรับปริญญาแนะนำล่วงหน้า 2-4 สัปดาห์ครับ</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: มีบริการแต่งหน้านอกสถานที่หรือไม่?</div>
+                <div class="faq-answer">A: มีบริการแต่งหน้านอกสถานที่ทั้งในกรุงเทพฯ ปริมณฑล และต่างจังหวัดครับ (มีค่าเดินทางตามระยะทางจริง)</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q: ใช้เวลาแต่งหน้าทำผมกี่ชั่วโมงต่อท่าน?</div>
+                <div class="faq-answer">A: บริการแต่งหน้าและทำผมใช้เวลาประมาณ 1.5 - 2 ชั่วโมงต่อท่าน เพื่อความละเอียดเรียบร้อยที่สุดครับ</div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Look 8 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1500840218059-8dd29e51438f?w=500&auto=format&fit=crop" alt="ลุคถ่ายแบบ">
-        <div class="look-body">
-          <h3>8. ลุคแฟชั่นถ่ายแบบ (Editorial)</h3>
-          <p>เน้นคอนเซปต์ชัดเจน เฉดดิ้งสร้างมิติคมชัด คอนทัวร์ถ่ายภาพสตูดิโอระดับโปร</p>
-          <div class="price-box">
-            <div class="price-amount">฿4,500</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
+    <!-- CONTACT & FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">GLOW<span>.Studio</span></div>
+                    <p style="color: #aaa; font-size: 0.95rem;">สตูดิโอแต่งหน้าโปรเฟสชันนอลโดยคุณเฟรดดี้ พร้อมเนรมิตความงามในวันสำคัญของคุณด้วยผลิตภัณฑ์ระดับพรีเมียม</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-line"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px;">เมนูด่วน</h4>
+                    <ul style="color: #aaa; font-size: 0.9rem; line-height: 2;">
+                        <li><a href="#artist">เกี่ยวกับคุณเฟรดดี้</a></li>
+                        <li><a href="#looks">ลุค & ราคา</a></li>
+                        <li><a href="#gallery">ผลงาน</a></li>
+                        <li><a href="#products">สินค้าแบรนด์</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px;">เวลาทำการ</h4>
+                    <p style="color: #aaa; font-size: 0.9rem;">จันทร์ - อาทิตย์<br>05:00 น. - 20:00 น.<br>(รับคิวตามนัดหมาย)</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px;">ติดต่อนัดหมาย</h4>
+                    <p style="color: #aaa; font-size: 0.9rem; line-height: 2;">
+                        <i class="fa-solid fa-phone" style="color: var(--primary);"></i> 081-234-5678<br>
+                        <i class="fa-brands fa-line" style="color: var(--primary);"></i> @glowstudio<br>
+                        <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> สุขุมวิท กรุงเทพมหานคร
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GLOW Studio & Cosmetics by Freddy. All rights reserved.</p>
+            </div>
         </div>
-      </div>
-
-      <!-- Look 9 -->
-      <div class="card look-card">
-        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=500&auto=format&fit=crop" alt="ลุคเพื่อนเจ้าสาว">
-        <div class="look-body">
-          <h3>9. ลุคเพื่อนเจ้าสาว (Bridesmaid)</h3>
-          <p>สวยคุมโทนเข้ากลุ่ม ไม่แย่งซีนเจ้าสาว แต่คงความสวยหวานละมุนละไม</p>
-          <div class="price-box">
-            <div class="price-amount">฿2,500</div>
-            <a href="#booking" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.85rem;">จองคิว</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-       5. GALLERY
-       ========================================== -->
-  <section id="gallery">
-    <div class="section-title">
-      <h2>แกลเลอรีผลงาน</h2>
-      <p>ภาพผลงานจริงโดยไม่มีการรีทัช เพื่อแสดงงานผิวที่แท้จริง</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500&auto=format&fit=crop" alt="Work 1"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337094846-8a83859283f6?w=500&auto=format&fit=crop" alt="Work 2"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500&auto=format&fit=crop" alt="Work 3"></div>
-      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=500&auto=format&fit=crop" alt="Work 4"></div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       6. COSMETICS STORE
-       ========================================== -->
-  <section id="shop" style="background:var(--white);">
-    <div class="section-title">
-      <h2>สินค้าแบรนด์ GLOW Cosmetics</h2>
-      <p>เวชสำอางเตรียมผิวและเมคอัพสูตรเฉพาะที่ช่างแต่งหน้าเลือกใช้</p>
-    </div>
-    <div class="grid-4">
-      
-      <div class="card product-card">
-        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&auto=format&fit=crop" alt="Primer">
-        <h3>Glow Hydrating Primer</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted);">ไพร์เมอร์เบลอรขุมขน เบาบาง ล็อคเมคอัพนาน 18 ชม.</p>
-        <div class="product-price">฿590</div>
-        <button class="btn-primary" style="width:100%;">สั่งซื้อสินค้า</button>
-      </div>
-
-      <div class="card product-card">
-        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop" alt="Serum">
-        <h3>Glow Magic Pre-Makeup Serum</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted);">เซรั่มอาหารผิว เติมความชุ่มชื้นทันที ไม่เหนียวเหนอะหนะ</p>
-        <div class="product-price">฿890</div>
-        <button class="btn-primary" style="width:100%;">สั่งซื้อสินค้า</button>
-      </div>
-
-      <div class="card product-card">
-        <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&auto=format&fit=crop" alt="Foundation">
-        <h3>Velvet HD Foundation</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted);">รองพื้นเนื้อบางเบา ปกปิดระดับ HD เหมาะกับผิวคนไทย</p>
-        <div class="product-price">฿750</div>
-        <button class="btn-primary" style="width:100%;">สั่งซื้อสินค้า</button>
-      </div>
-
-      <div class="card product-card">
-        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&auto=format&fit=crop" alt="Lipstick">
-        <h3>Glow Matte & Shine Lip</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted);">ลิปสติกโทนนู้ดผู้ดี ชุ่มชื้น ไม่ตกร่อง ปากอวบอิ่ม</p>
-        <div class="product-price">฿450</div>
-        <button class="btn-primary" style="width:100%;">สั่งซื้อสินค้า</button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-       7. BOOKING SYSTEM
-       ========================================== -->
-  <section id="booking">
-    <div class="section-title">
-      <h2>จองคิวรับบริการออนไลน์</h2>
-      <p>กรอกข้อมูลเพื่อเช็คคิวว่างและสำรองวันแต่งหน้าล่วงหน้า</p>
-    </div>
-    <div class="booking-wrapper">
-      <form class="booking-form" onsubmit="event.preventDefault(); alert('ขอบคุณสำหรับการจองคิว! ทางร้านจะติดต่อกลับโดยเร็วที่สุดครับ');">
-        <div class="form-group">
-          <label>ชื่อ - นามสกุล *</label>
-          <input type="text" placeholder="ระบุชื่อของคุณ" required>
-        </div>
-
-        <div class="form-group">
-          <label>เบอร์โทรศัพท์ติดต่อ *</label>
-          <input type="tel" placeholder="08X-XXX-XXXX" required>
-        </div>
-
-        <div class="form-group">
-          <label>วันที่ต้องการแต่งหน้า *</label>
-          <input type="date" required>
-        </div>
-
-        <div class="form-group">
-          <label>เวลาที่ต้องการให้เสร็จ *</label>
-          <input type="time" required>
-        </div>
-
-        <div class="form-group full-width">
-          <label>เลือกลุคแต่งหน้า *</label>
-          <select required>
-            <option value="">-- กรุณาเลือกลุคแต่งหน้า --</option>
-            <option>1. ลุคสายฝอ Glam Inter (฿3,500)</option>
-            <option>2. ลุคสตรีทผู้ดีอังกฤษ (฿3,800)</option>
-            <option>3. ลุคเจ้าสาวชุดไทย (฿8,500)</option>
-            <option>4. ลุคเกาหลีโกลว์ (฿3,000)</option>
-            <option>5. ลุคเจ้าสาวชุดราตรี (฿8,500)</option>
-            <option>6. ลุครับปริญญา (฿2,800)</option>
-            <option>7. ลุคออกงาน Gala Night (฿3,500)</option>
-          </select>
-        </div>
-
-        <div class="form-group full-width">
-          <label>สถานที่รับบริการ</label>
-          <select>
-            <option>แต่งหน้า ณ สตูดิโอ GLOW (กรุงเทพฯ)</option>
-            <option>แต่งหน้านอกสถานที่ (มีค่าเดินทางเพิ่มเติม)</option>
-          </select>
-        </div>
-
-        <div class="form-group full-width">
-          <label>รายละเอียดเพิ่มเติม / ข้อระวังเรื่องผิว</label>
-          <textarea rows="3" placeholder="เช่น ผิวแพ้ง่าย มีรอยสิว ต้องการแต่งหน้าเจ้าบ่าวเพิ่ม"></textarea>
-        </div>
-
-        <div class="form-group full-width">
-          <button type="submit" class="btn-primary" style="font-size:1.1rem;">ส่งข้อมูลจองคิว</button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       8. CLIENT REVIEWS
-       ========================================== -->
-  <section id="reviews" style="background:var(--pink-pastel); border-radius:30px;">
-    <div class="section-title">
-      <h2>รีวิวจากลูกค้าของเรา</h2>
-      <p>ความประทับใจจริงจากลูกค้าที่เคยใช้บริการแต่งหน้ากับเรา</p>
-    </div>
-    <div class="grid-3">
-      
-      <div class="card review-card">
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>"แต่งหน้างานเจ้าสาวสวยถูกใจมากเลยค่ะ เพื่อนๆ และผู้ใหญ่ชมทั้งงาน ลุคชุดไทยคมละมุนมาก ที่สำคัญหน้าแน่นทนตั้งแต่เช้าจนถึงงานเลี้ยงค่ำเลยค่ะ"</p>
-        <div class="client-info">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop" alt="Client">
-          <div>
-            <strong>คุณเมย์</strong>
-            <p style="font-size:0.8rem; color:var(--text-muted);">เจ้าสาวงานเช้า-เย็น</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card review-card">
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>"ชอบลุคสายฝอมากกกก ช่างเฉดดิ้งหน้าพุ่ง ตาเฉี่ยวสุดๆ แถมใช้เซรั่มแบรนด์ร้านลงก่อนแต่ง รู้สึกหน้าฉ่ำไม่แห้งตึงเลยค่ะ"</p>
-        <div class="client-info">
-          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop" alt="Client">
-          <div>
-            <strong>คุณเกรซ</strong>
-            <p style="font-size:0.8rem; color:var(--text-muted);">แต่งหน้างาน Gala</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card review-card">
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>"แต่งหน้ารับปริญญากับที่นี่ เหงื่อออกแค่ไหนก็แค่ซับออก ไม่เป็นคราบเลย ถ่ายรูปกลางแดดแล้วผิวสวยออร่ามาก แนะนำเพื่อนๆ มาแต่งต่อแน่นอนครับ"</p>
-        <div class="client-info">
-          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&auto=format&fit=crop" alt="Client">
-          <div>
-            <strong>คุณเจมส์</strong>
-            <p style="font-size:0.8rem; color:var(--text-muted);">บัณฑิต ม.ธรรมศาสตร์</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-       9. BEAUTY BLOG
-       ========================================== -->
-  <section id="blog">
-    <div class="section-title">
-      <h2>บทความ & เทคนิคความงาม</h2>
-      <p>สาระน่ารู้เรื่องการดูแลผิวและการแต่งหน้าจากช่างมืออาชีพ</p>
-    </div>
-    <div class="grid-3">
-      
-      <div class="card blog-card">
-        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop" alt="Blog 1">
-        <div class="blog-body">
-          <div class="blog-date"><i class="fa-regular fa-calendar"></i> 15 กุมภาพันธ์ 2026</div>
-          <h3>5 ขั้นตอนเตรียมผิวก่อนวันแต่งงานให้เครื่องสำอางติดทน</h3>
-          <p>การเตรียมผิวเป็นหัวใจสำคัญของการแต่งหน้าเจ้าสาว อ่านเคล็ดลับการมาส์กหน้าและบำรุงผิวก่อนวันจริง 1 สัปดาห์...</p>
-        </div>
-      </div>
-
-      <div class="card blog-card">
-        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&auto=format&fit=crop" alt="Blog 2">
-        <div class="blog-body">
-          <div class="blog-date"><i class="fa-regular fa-calendar"></i> 10 มกราคม 2026</div>
-          <h3>วิธีเช็ค Undertone ผิว เพื่อเลือกรองพื้นให้หน้าไม่ลอย</h3>
-          <p>หมดปัญหาแต่งหน้าแล้วคอดำหน้าลอย เรียนรู้วิธีดูสีเส้นเลือดที่ข้อมือเพื่อเลือกโทนรองพื้นที่ใช่สำหรับคุณ...</p>
-        </div>
-      </div>
-
-      <div class="card blog-card">
-        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&auto=format&fit=crop" alt="Blog 3">
-        <div class="blog-body">
-          <div class="blog-date"><i class="fa-regular fa-calendar"></i> 5 ธันวาคม 2025</div>
-          <h3>ทำไมต้องใช้ ไพร์เมอร์ ก่อนแต่งหน้า?</h3>
-          <p>ทำความรู้จักกับตัวช่วยล็อคความชุ่มชื้นและเบลอร่องรูขุมขน สิ่งสำคัญที่ทำให้เมคอัพติดทนนานตลอดทั้งวัน...</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-       10. FAQ
-       ========================================== -->
-  <section id="faq" style="background:var(--white);">
-    <div class="section-title">
-      <h2>คำถามที่พบบ่อย (FAQ)</h2>
-      <p>ไขข้อข้องใจเกี่ยวกับการบริการและการเตรียมตัว</p>
-    </div>
-    <div class="faq-container">
-      
-      <div class="faq-item">
-        <h4>Q: ควรจองคิวล่วงหน้านานเท่าไหร่?</h4>
-        <p>A: สำหรับงานเจ้าสาวแนะนำจองล่วงหน้า 1-3 เดือนครับ ส่วนงานแต่งหน้าทั่วไป รับปริญญา หรือออกงาน แนะนำจองล่วงหน้าอย่างน้อย 1-2 สัปดาห์เพื่อล็อคคิวเวลาที่ต้องการ</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Q: เครื่องสำอางที่ใช้เป็นแบรนด์อะไรบ้าง?</h4>
-        <p>A: ทางร้านใช้เครื่องสำอางระดับ Counter Brand ชั้นนำ (เช่น Dior, Chanel, Charlotte Tilbury, NARS) ควบคู่กับผลิตภัณฑ์เตรียมผิวแบรนด์ GLOW Cosmetics ของทางร้านครับ</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Q: ก่อนวันแต่งหน้าต้องเตรียมตัวอย่างไร?</h4>
-        <p>A: ควรสระผมล่วงหน้า 1 คืน (ห้ามใส่นวดหรือออยล์ที่หนังศีรษะ) พักผ่อนให้เพียงพอ มาร์กหน้าเติมความชุ่มชื้น และงดการบีบสิวหรือทำเลเซอร์ก่อนวันแต่ง 3-5 วันครับ</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Q: มีบริการแต่งหน้านอกสถานที่ไหม?</h4>
-        <p>A: มีบริการแต่งหน้านอกสถานที่ทั้งในกรุงเทพฯ และต่างจังหวัดครับ โดยจะมีค่าเดินทางคำนวณตามระยะทางจริงครับ</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-       11. CONTACT & LOCATION
-       ========================================== -->
-  <section id="contact">
-    <div class="section-title">
-      <h2>ติดต่อเรา</h2>
-      <p>สอบถามรายละเอียดเพิ่มเติม หรือนัดหมายคิวแต่งหน้า</p>
-    </div>
-    <div class="contact-container grid-2">
-      <div class="contact-info">
-        <div class="info-item">
-          <i class="fa-solid fa-phone"></i>
-          <div>
-            <strong>เบอร์โทรศัพท์</strong>
-            <p>081-234-5678 / 092-987-6543</p>
-          </div>
-        </div>
-
-        <div class="info-item">
-          <i class="fa-brands fa-line"></i>
-          <div>
-            <strong>LINE Official</strong>
-            <p>@glowstudio (มี @ ด้านหน้า)</p>
-          </div>
-        </div>
-
-        <div class="info-item">
-          <i class="fa-brands fa-instagram"></i>
-          <div>
-            <strong>Instagram</strong>
-            <p>@glowstudio_official</p>
-          </div>
-        </div>
-
-        <div class="info-item">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <strong>ที่ตั้งสตูดิโอ</strong>
-            <p>123/45 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพมหานคร 10110</p>
-          </div>
-        </div>
-      </div>
-
-      <div style="width:100%; height:300px; background:#eee; border-radius:15px; display:flex; align-items:center; justify-content:center; color:#777;">
-        <i class="fa-solid fa-map-location-dot" style="font-size:3rem; margin-right:10px;"></i>
-        <span>แผนที่ Google Maps สตูดิโอ</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       12. FOOTER
-       ========================================== -->
-  <footer>
-    <div style="margin-bottom:1.5rem;">
-      <a href="#" class="logo" style="color:white;">GLOW<span>.</span> Studio</a>
-    </div>
-    <p>สถาบันแต่งหน้า และจำหน่ายเครื่องสำอางแบรนด์ GLOW Cosmetics อย่างเป็นทางการ</p>
-    <p style="margin-top:1rem; font-size:0.8rem; color:#888;">&copy; 2026 GLOW Studio & Cosmetics. All rights reserved.</p>
-  </footer>
+    </footer>
 
 </body>
 </html>
