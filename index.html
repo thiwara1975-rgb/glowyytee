@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glow Studio - Makeup & Beauty Products</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==================== 1. VARIABLES & RESET ==================== */
+    :root {
+      --bg-cream: #FAF6F0;
+      --pink-pastel: #F8E8EE;
+      --pink-accent: #E8A0BF;
+      --purple-pastel: #E3DFFD;
+      --text-dark: #4A403A;
+      --text-light: #7D746D;
+      --white: #FFFFFF;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==================== 2. NAVBAR ==================== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 8%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+      transition: var(--transition-smooth);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--pink-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 400;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-links a:hover {
+      color: var(--pink-accent);
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .icon-btn:hover {
+      color: var(--pink-accent);
+      transform: translateY(-2px);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--pink-accent);
+      color: white;
+      font-size: 0.7rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Search Bar Popup */
+    .search-box {
+      position: absolute;
+      top: 100%;
+      right: 8%;
+      background: var(--white);
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: var(--transition-smooth);
+    }
+
+    .search-box.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(10px);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      width: 200px;
+    }
+
+    /* ==================== 3. HERO BANNER ==================== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8%;
+      background: linear-gradient(135deg, var(--bg-cream) 0%, var(--pink-pastel) 50%, var(--purple-pastel) 100%);
+      margin-top: 0;
+      position: relative;
+    }
+
+    .hero-text {
+      max-width: 500px;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .btn-primary {
+      padding: 0.9rem 2.2rem;
+      background: var(--pink-accent);
+      color: var(--white);
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(232, 160, 191, 0.4);
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(232, 160, 191, 0.6);
+    }
+
+    .hero-image img {
+      width: 420px;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 200px 200px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      animation: floatImg 4s ease-in-out infinite;
+    }
+
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* ==================== 4. SECTIONS & CARDS ==================== */
+    .section-title {
+      text-align: center;
+      margin: 5rem 0 3rem;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: var(--text-light);
+    }
+
+    /* Booking Section */
+    .booking-container {
+      max-width: 800px;
+      margin: 0 auto 5rem;
+      background: var(--white);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 0.8rem 1rem;
+      border: 1px solid #EFEFEF;
+      background: var(--bg-cream);
+      border-radius: 10px;
+      outline: none;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--pink-accent);
+      background: var(--white);
+    }
+
+    /* Products Section */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 0 8% 5rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+    }
+
+    .product-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-card .price {
+      color: var(--pink-accent);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 0.7rem;
+      background: var(--bg-cream);
+      border: 1px solid var(--pink-accent);
+      color: var(--text-dark);
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-secondary:hover {
+      background: var(--pink-accent);
+      color: var(--white);
+    }
+
+    /* ==================== 5. MODAL (LOGIN & CART) ==================== */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+      z-index: 2000;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+      transform: scale(0.8);
+      transition: var(--transition-smooth);
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--white);
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #EFEFEF;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">GLOW<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">หน้าแรก</a></li>
+      <li><a href="#booking">จองคิวแต่งหน้า</a></li>
+      <li><a href="#products">สินค้าแบรนด์</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button class="icon-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="cartBtn">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn" id="loginBtn"><i class="fa-regular fa-user"></i></button>
+    </div>
+
+    <!-- Search Input Box -->
+    <div class="search-box" id="searchBox">
+      <input type="text" placeholder="ค้นหาบริการหรือสินค้า...">
+      <i class="fa-solid fa-magnifying-glass" style="color: var(--text-light);"></i>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION / BANNER -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>เนรมิตความงาม<br>ในสไตล์ที่เป็นคุณ</h1>
+      <p>บริการแต่งหน้าระดับมืออาชีพ พร้อมผลิตภัณฑ์เตรียมผิวสูตรพิเศษเฉพาะตัว เพื่อผิวฉ่ำวาว รูขุมขนเรียบเนียนตลอดวัน</p>
+      <a href="#booking" class="btn-primary">จองคิวแต่งหน้าตอนนี้</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Makeup Artist">
+    </div>
+  </section>
+
+  <!-- BOOKING SECTION -->
+  <section id="booking">
+    <div class="section-title">
+      <h2>จองคิวรับบริการ</h2>
+      <p>เลือกวัน เวลา และรูปแบบงานแต่งหน้าที่คุณต้องการ</p>
+    </div>
+    <div class="booking-container">
+      <form class="booking-form" onsubmit="handleBooking(event)">
+        <div class="form-group">
+          <label>ชื่อ-นามสกุล</label>
+          <input type="text" required placeholder="กรอกชื่อของคุณ">
+        </div>
+        <div class="form-group">
+          <label>เบอร์โทรศัพท์</label>
+          <input type="tel" required placeholder="08X-XXX-XXXX">
+        </div>
+        <div class="form-group">
+          <label>บริการที่สนใจ</label>
+          <select required>
+            <option value="">-- เลือกประเภทการแต่งหน้า --</option>
+            <option value="bride">แต่งหน้าเจ้าสาว (Bride Makeup)</option>
+            <option value="grad">แต่งหน้ารับปริญญา (Graduation)</option>
+            <option value="event">แต่งหน้าไปงาน/ออกงาน (Event/Party)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>วันที่ต้องการรับบริการ</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group full">
+          <label>รายละเอียดเพิ่มเติม / สถานที่</label>
+          <textarea rows="3" placeholder="ระบุสถานที่ หรือโทนแต่งหน้าที่ชอบเป็นพิเศษ..."></textarea>
+        </div>
+        <div class="form-group full">
+          <button type="submit" class="btn-primary" style="width: 100%;">ยืนยันการจองคิว</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section id="products">
+    <div class="section-title">
+      <h2>สินค้าแบรนด์ GLOW</h2>
+      <p>ผลิตภัณฑ์เตรียมผิวและเมคอัพที่ช่างแต่งหน้าเลือกใช้</p>
+    </div>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Primer">
+        <h3>Glow Hydrating Primer</h3>
+        <p style="color: var(--text-light); font-size: 0.85rem; margin-bottom:0.5rem;">ไพร์เมอร์เตรียมผิว หน้าเงาอิ่มน้ำ</p>
+        <div class="price">฿590</div>
+        <button class="btn-secondary" onclick="addToCart('Glow Hydrating Primer')">เพิ่มลงตะกร้า</button>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Serum">
+        <h3>Glow Magic Serum</h3>
+        <p style="color: var(--text-light); font-size: 0.85rem; margin-bottom:0.5rem;">เซรั่มบำรุงลึก ให้เครื่องสำอางติดทน</p>
+        <div class="price">฿890</div>
+        <button class="btn-secondary" onclick="addToCart('Glow Magic Serum')">เพิ่มลงตะกร้า</button>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=500&q=80" alt="Foundation">
+        <h3>Velvet Touch Foundation</h3>
+        <p style="color: var(--text-light); font-size: 0.85rem; margin-bottom:0.5rem;">รองพื้นบางเบา ปกปิดระดับ HD</p>
+        <div class="price">฿750</div>
+        <button class="btn-secondary" onclick="addToCart('Velvet Touch Foundation')">เพิ่มลงตะกร้า</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeLogin">&times;</span>
+      <h2 style="margin-bottom: 1.5rem; text-align: center;">เข้าสู่ระบบ</h2>
+      <form onsubmit="handleLogin(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="form-group">
+          <label>อีเมล</label>
+          <input type="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>รหัสผ่าน</label>
+          <input type="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top: 1rem;">เข้าสู่ระบบ</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 GLOW Studio & Cosmetics. All rights reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Search Toggle
+    const searchBtn = document.getElementById('searchBtn');
+    const searchBox = document.getElementById('searchBox');
+    searchBtn.addEventListener('click', () => {
+      searchBox.classList.toggle('active');
+    });
+
+    // Login Modal Toggle
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeLogin = document.getElementById('closeLogin');
+
+    loginBtn.addEventListener('click', () => loginModal.classList.add('active'));
+    closeLogin.addEventListener('click', () => loginModal.classList.remove('active'));
+
+    // Cart Count System
+    let cartItems = 0;
+    const cartCountEl = document.getElementById('cartCount');
+
+    function addToCart(productName) {
+      cartItems++;
+      cartCountEl.textContent = cartItems;
+      alert(`เพิ่ม "${productName}" ลงในตะกร้าเรียบร้อยแล้ว!`);
+    }
+
+    // Handle Forms
+    function handleBooking(e) {
+      e.preventDefault();
+      alert('ส่งข้อมูลการจองคิวสำเร็จ! ทางเราจะติดต่อกลับโดยเร็วที่สุดครับ');
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      alert('เข้าสู่ระบบสำเร็จ!');
+      loginModal.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
