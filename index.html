@@ -11,13 +11,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* GLOBAL VARIABLES & RESET */
         :root {
-            --primary: #D4AF37; /* Metallic Gold */
+            --primary: #D4AF37;
             --primary-hover: #AA820A;
-            --secondary: #FAF6F0; /* Soft Warm Cream */
-            --dark: #1A1A1A; /* Deep Velvet Black */
-            --accent: #E8D8C8; /* Soft Rose Gold Tint */
+            --secondary: #FAF6F0;
+            --dark: #1A1A1A;
+            --accent: #E8D8C8;
         }
         
         body {
@@ -31,14 +30,12 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Glassmorphism Header */
         .glass-nav {
             background: rgba(250, 246, 240, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        /* Gold Gradient Text & Button */
         .gold-gradient-text {
             background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
             -webkit-background-clip: text;
@@ -58,7 +55,6 @@
             transform: translateY(-2px);
         }
 
-        /* Smooth Card Hover Effects */
         .card-hover {
             transition: all 0.3s ease;
         }
@@ -67,7 +63,6 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -104,13 +99,11 @@
                 จองคิวแต่งหน้า
             </a>
 
-            <!-- Mobile Menu Button -->
             <button id="menu-btn" class="md:hidden text-gray-700 text-2xl focus:outline-none">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
         
-        <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-amber-100 px-4 pt-2 pb-6 space-y-3">
             <a href="#about" class="block text-gray-700 hover:text-amber-600 py-1">เกี่ยวกับช่าง</a>
             <a href="#services" class="block text-gray-700 hover:text-amber-600 py-1">ลุค & ราคา</a>
@@ -126,7 +119,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (รูปที่ 1: ผลงานแต่งหน้าหลัก) -->
     <section class="pt-32 pb-20 md:pt-40 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
         <div class="w-full md:w-1/2 space-y-6 text-center md:text-left">
             <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100/60 text-amber-800 text-xs font-semibold tracking-widest uppercase">
@@ -154,7 +147,7 @@
         </div>
         <div class="w-full md:w-1/2 relative">
             <div class="relative mx-auto max-w-md md:max-w-none">
-                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=80" alt="บริการแต่งหน้าเจ้าสาว คุณเฟรดดี้" class="rounded-3xl shadow-2xl object-cover w-full h-[500px]">
+                <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80" alt="บริการแต่งหน้าเจ้าสาว คุณเฟรดดี้" class="rounded-3xl shadow-2xl object-cover w-full h-[500px]">
                 <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl hidden sm:block max-w-xs border border-amber-100">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="flex text-amber-400 text-sm">
@@ -168,12 +161,12 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION (รูปที่ 2: งานซูมแต่งหน้าตา/ผิว) -->
     <section id="about" class="py-20 bg-white border-y border-amber-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="w-full md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=80" alt="ช่างแต่งหน้า คุณเฟรดดี้" class="rounded-2xl shadow-lg w-full h-[450px] object-cover">
+                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1000&q=80" alt="แต่งหน้าคุณเฟรดดี้" class="rounded-2xl shadow-lg w-full h-[450px] object-cover">
                 </div>
                 <div class="w-full md:w-1/2 space-y-6">
                     <span class="text-xs font-bold tracking-widest text-amber-600 uppercase">About Makeup Artist</span>
@@ -201,7 +194,7 @@
         </div>
     </section>
 
-    <!-- SERVICES & PRICING -->
+    <!-- SERVICES & PRICING (รูปที่ 3, 4, 5: ลุคเจ้าสาว, ออกงาน/เพื่อนเจ้าสาว, รับปริญญา) -->
     <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <span class="text-xs font-bold tracking-widest text-amber-600 uppercase">Services & Rates</span>
@@ -210,11 +203,11 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Card 1: แต่งหน้าเจ้าสาว -->
+            <!-- Card 1: แต่งหน้าเจ้าสาว (รูปแต่งหน้าเจ้าสาวสวยหวาน) -->
             <div class="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm card-hover relative flex flex-col justify-between">
                 <div>
                     <div class="h-48 overflow-hidden rounded-2xl mb-6">
-                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้าเจ้าสาว" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้าเจ้าสาว" class="w-full h-full object-cover">
                     </div>
                     <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium mb-3">Popular Choice</span>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">แต่งหน้าเจ้าสาว (Bridal)</h3>
@@ -234,12 +227,12 @@
                 </div>
             </div>
 
-            <!-- Card 2: แต่งหน้าออกงาน / เพื่อนเจ้าสาว -->
+            <!-- Card 2: แต่งหน้าออกงาน / เพื่อนเจ้าสาว (รูปผู้หญิงแต่งหน้าสวยโกลว์) -->
             <div class="bg-white rounded-3xl p-8 border border-amber-200 shadow-md card-hover relative flex flex-col justify-between border-2 border-amber-400">
                 <span class="absolute -top-3.5 right-6 bg-amber-500 text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full">Recommended</span>
                 <div>
                     <div class="h-48 overflow-hidden rounded-2xl mb-6">
-                        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้าออกงาน เพื่อนเจ้าสาว" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้าออกงาน เพื่อนเจ้าสาว" class="w-full h-full object-cover">
                     </div>
                     <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium mb-3">Event & Party</span>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">แต่งหน้าออกงาน / เพื่อนเจ้าสาว</h3>
@@ -259,11 +252,11 @@
                 </div>
             </div>
 
-            <!-- Card 3: แต่งหน้ารับปริญญา -->
+            <!-- Card 3: แต่งหน้ารับปริญญา (รูปหญิงสาวแต่งหน้าสดใส) -->
             <div class="bg-white rounded-3xl p-8 border border-amber-100 shadow-sm card-hover relative flex flex-col justify-between">
                 <div>
                     <div class="h-48 overflow-hidden rounded-2xl mb-6">
-                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้ารับปริญญา" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้ารับปริญญา" class="w-full h-full object-cover">
                     </div>
                     <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium mb-3">Graduation</span>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">แต่งหน้ารับปริญญา (Graduation)</h3>
@@ -285,7 +278,7 @@
         </div>
     </section>
 
-    <!-- GALLERY SECTION -->
+    <!-- GALLERY SECTION (รูปที่ 6, 7, 8, 9: ผลงานแต่งหน้าใบหน้าคนแท้ๆ 4 ลุคไม่ซ้ำกันเลย) -->
     <section id="gallery" class="py-20 bg-white border-y border-amber-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
@@ -294,19 +287,22 @@
                 <p class="text-gray-500 text-sm font-light mt-3">ภาพผลงานจริงโดยไม่มีการรีทัช เพื่อแสดงงานผิวที่แท้จริง</p>
             </div>
 
-            <!-- Grid ผลงาน 4 รูปตรงปก -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- ลุคที่ 1: งานแต่งตาโกลว์แน่น -->
                 <div class="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="แปรงแต่งหน้าและเครื่องสำอาง" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80" alt="งานแต่งหน้าผิวโกลว์สวย" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
                 </div>
+                <!-- ลุคที่ 2: แต่งหน้าโทนนู้ดส้มละมุน -->
                 <div class="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="ลุคแต่งหน้าเจ้าสาว งานผิวฉ่ำวาว" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้าโทนละมุนธรรมชาติ" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
                 </div>
+                <!-- ลุคที่ 3: แต่งหน้าเจ้าสาวงานผิวฉ่ำ -->
                 <div class="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="แต่งหน้าโทนธรรมชาติ สวยหวาน" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="งานผิวสวยฉ่ำวาว" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
                 </div>
+                <!-- ลุคที่ 4: แต่งหน้าลุคออกงานเฉี่ยวๆ -->
                 <div class="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all">
-                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80" alt="ลุคแต่งหน้าออกงาน โทนสายฝอ" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="ลุคแต่งหน้าออกงานปังๆ" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-500">
                 </div>
             </div>
         </div>
@@ -407,7 +403,7 @@
         </div>
     </section>
 
-    <!-- ARTICLES / BLOG -->
+    <!-- ARTICLES / BLOG (รูปบทความเปลี่ยนเป็นรูปสอน/แต่งหน้าฉ่ำๆ อีก 3 รูป) -->
     <section id="articles" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <span class="text-xs font-bold tracking-widest text-amber-600 uppercase">Beauty Tips & Articles</span>
@@ -426,7 +422,7 @@
             </article>
 
             <article class="bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-sm card-hover">
-                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="เลือกโทนลิปสติก" class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="เลือกโทนลิปสติก" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <span class="text-[10px] text-amber-600 font-bold uppercase tracking-wider">Makeup Trends</span>
                     <h3 class="font-bold text-gray-900 mt-2 text-base hover:text-amber-600 transition-colors">วิธีเลือกโทนสีเมคอัพให้ขับผิว ขับออร่าในวันงาน</h3>
@@ -435,7 +431,7 @@
             </article>
 
             <article class="bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-sm card-hover">
-                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" alt="แต่งหน้ากันน้ำคุมมัน" class="w-full h-48 object-cover">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="แต่งหน้ากันน้ำคุมมัน" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <span class="text-[10px] text-amber-600 font-bold uppercase tracking-wider">Beauty Hacks</span>
                     <h3 class="font-bold text-gray-900 mt-2 text-base hover:text-amber-600 transition-colors">แต่งหน้าอย่างไรให้ติดทนนาน 12 ชั่วโมง หน้าไม่ดรอป</h3>
@@ -525,7 +521,6 @@
                     </div>
                 </div>
 
-                <!-- Contact Form Simulation -->
                 <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 space-y-4">
                     <h3 class="text-lg font-bold text-white mb-2">ส่งข้อความเช็กคิวว่าง</h3>
                     <div>
@@ -557,7 +552,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
