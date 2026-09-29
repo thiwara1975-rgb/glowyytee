@@ -1,1030 +1,1996 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLOW Studio & Cosmetics - บริการแต่งหน้าโปรเฟสชันนอล & เครื่องสำอางแบรนด์เนม</title>
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* ==========================================
-           1. GLOBAL VARIABLES & RESET
-           ========================================== */
-        :root {
-            --primary: #d4a373;
-            --primary-dark: #bc8a5f;
-            --secondary: #faedcd;
-            --accent: #e76f51;
-            --bg-light: #fefae0;
-            --bg-white: #ffffff;
-            --text-dark: #2b2d42;
-            --text-muted: #6c757d;
-            --border-color: #e9ecef;
-            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 20px rgba(0,0,0,0.08);
-            --shadow-lg: 0 15px 30px rgba(0,0,0,0.12);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Kanit', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* ==========================================
-           2. BUTTONS & BADGES
-           ========================================== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.6);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary-dark);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* ==========================================
-           3. NAVIGATION
-           ========================================== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .navbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 80px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-link {
-            font-weight: 400;
-            color: var(--text-dark);
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        /* ==========================================
-           4. HERO SECTION
-           ========================================== */
-        .hero {
-            padding-top: 140px;
-            padding-bottom: 80px;
-            background: linear-gradient(180deg, var(--bg-light) 0%, rgba(255,255,255,1) 100%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.2rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .hero-content p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(0,0,0,0.08);
-        }
-
-        .stat-item h3 {
-            font-size: 2rem;
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-
-        .stat-item p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-
-        .hero-img-wrapper {
-            position: relative;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* ==========================================
-           5. ARTIST PROFILE (FREDDY)
-           ========================================== */
-        .artist-section {
-            background-color: var(--bg-light);
-            border-radius: var(--radius-lg);
-            padding: 60px;
-            margin: 40px 0;
-        }
-
-        .artist-grid {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .artist-img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-        }
-
-        .artist-content h3 {
-            font-size: 2.2rem;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-
-        .artist-title {
-            color: var(--primary-dark);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .artist-bio {
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-
-        .artist-badges {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 25px;
-        }
-
-        .badge-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            padding: 12px 20px;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-sm);
-            font-weight: 500;
-        }
-
-        .badge-item i {
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        /* ==========================================
-           6. MAKEUP LOOKS & PRICES
-           ========================================== */
-        .looks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .look-card {
-            background: white;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .look-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .look-img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-        }
-
-        .look-info {
-            padding: 25px;
-        }
-
-        .look-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .look-info p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            min-height: 48px;
-        }
-
-        .look-price-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-        }
-
-        /* ==========================================
-           7. GALLERY SECTION
-           ========================================== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            height: 280px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-
-        /* ==========================================
-           8. COSMETICS PRODUCTS
-           ========================================== */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .product-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 220px;
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
-
-        .product-brand {
-            font-size: 0.85rem;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 5px 0 10px;
-        }
-
-        /* ==========================================
-           9. REVIEWS & TESTIMONIALS
-           ========================================== */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .review-card {
-            background: var(--bg-light);
-            padding: 30px;
-            border-radius: var(--radius-md);
-            position: relative;
-        }
-
-        .stars {
-            color: #ffb703;
-            margin-bottom: 15px;
-        }
-
-        .review-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .client-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        /* ==========================================
-           10. ARTICLES & FAQ
-           ========================================== */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .blog-card {
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-        }
-
-        .blog-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .blog-content {
-            padding: 20px;
-        }
-
-        .faq-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            margin-bottom: 15px;
-            padding: 20px;
-        }
-
-        .faq-question {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .faq-answer {
-            color: var(--text-muted);
-        }
-
-        /* ==========================================
-           11. FOOTER
-           ========================================== */
-        footer {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            padding: 70px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .footer-logo span {
-            color: var(--primary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-btn:hover {
-            background: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-grid, .artist-grid {
-                grid-template-columns: 1fr;
-            }
-            .artist-img {
-                height: 380px;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLOWYTEE — Makeup Artist & Beauty Studio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+
+:root{
+  --pink:#e9a9b8;
+  --pink-dark:#c8788c;
+  --pink-light:#fff4f6;
+  --rose:#f7dce2;
+  --text:#3f3437;
+  --muted:#8d7c80;
+  --white:#fff;
+  --bg:#fffafb;
+  --shadow:0 15px 45px rgba(140,80,95,.10);
+  --radius:24px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Kanit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+button,input,select,textarea{
+  font-family:inherit;
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ---------- LOADING ---------- */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:#fffafb;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.6s;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-box{
+  text-align:center;
+}
+
+.loader-logo{
+  font-family:'Playfair Display',serif;
+  font-size:48px;
+  color:var(--pink-dark);
+  letter-spacing:5px;
+}
+
+.loader-line{
+  width:120px;
+  height:3px;
+  background:var(--rose);
+  margin:18px auto;
+  overflow:hidden;
+  border-radius:20px;
+}
+
+.loader-line span{
+  display:block;
+  width:40%;
+  height:100%;
+  background:var(--pink-dark);
+  animation:loading 1.2s infinite;
+}
+
+@keyframes loading{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(300%)}
+}
+
+/* ---------- NAVBAR ---------- */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(255,250,251,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(220,170,180,.15);
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  height:78px;
+  padding:0 25px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:27px;
+  letter-spacing:4px;
+  color:var(--pink-dark);
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  align-items:center;
+}
+
+.nav-links a{
+  font-size:14px;
+  color:#66575b;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--pink-dark);
+}
+
+.login-btn{
+  border:1px solid var(--pink);
+  color:var(--pink-dark);
+  background:white;
+  border-radius:50px;
+  padding:9px 20px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.login-btn:hover{
+  background:var(--pink);
+  color:white;
+}
+
+.menu{
+  display:none;
+  font-size:27px;
+  cursor:pointer;
+}
+
+/* ---------- GENERAL ---------- */
+
+section{
+  padding:110px 7%;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:55px;
+}
+
+.section-title small{
+  color:var(--pink-dark);
+  letter-spacing:3px;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  font-weight:500;
+  margin:8px 0;
+}
+
+.section-title p{
+  max-width:600px;
+  margin:auto;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.btn{
+  border:0;
+  border-radius:50px;
+  padding:13px 27px;
+  background:var(--pink-dark);
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+  display:inline-block;
+  box-shadow:0 8px 20px rgba(200,120,140,.20);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  background:#b9677c;
+}
+
+.btn-outline{
+  background:white;
+  color:var(--pink-dark);
+  border:1px solid var(--pink);
+  box-shadow:none;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  min-height:100vh;
+  padding-top:130px;
+  background:
+  radial-gradient(circle at 85% 20%,#f9dfe5 0,transparent 28%),
+  radial-gradient(circle at 10% 80%,#fceef1 0,transparent 25%),
+  var(--bg);
+  display:flex;
+  align-items:center;
+}
+
+.hero-grid{
+  max-width:1200px;
+  width:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.hero-text small{
+  color:var(--pink-dark);
+  letter-spacing:4px;
+}
+
+.hero-text h1{
+  font-family:'Playfair Display',serif;
+  font-size:68px;
+  line-height:1.05;
+  font-weight:500;
+  margin:18px 0;
+}
+
+.hero-text h1 span{
+  color:var(--pink-dark);
+}
+
+.hero-text p{
+  color:var(--muted);
+  max-width:520px;
+  margin-bottom:28px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.hero-image{
+  position:relative;
+}
+
+.hero-image img{
+  height:580px;
+  object-fit:cover;
+  border-radius:180px 180px 35px 35px;
+  box-shadow:var(--shadow);
+}
+
+.hero-card{
+  position:absolute;
+  bottom:25px;
+  left:-35px;
+  background:white;
+  padding:18px 22px;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+.hero-card strong{
+  display:block;
+  color:var(--pink-dark);
+}
+
+/* ---------- ABOUT ---------- */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about-photo{
+  border-radius:35px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.about-photo img{
+  height:560px;
+  object-fit:cover;
+}
+
+.about-text h2{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  margin:10px 0 20px;
+}
+
+.about-text p{
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.info-box{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:25px 0;
+}
+
+.info{
+  background:white;
+  padding:20px 10px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.info strong{
+  display:block;
+  font-size:25px;
+  color:var(--pink-dark);
+}
+
+/* ---------- PORTFOLIO ---------- */
+
+.portfolio{
+  background:#fff5f7;
+}
+
+.filters{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:35px;
+}
+
+.filter{
+  padding:9px 19px;
+  border-radius:50px;
+  border:1px solid #edc4cd;
+  background:white;
+  color:var(--pink-dark);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.filter.active,
+.filter:hover{
+  background:var(--pink-dark);
+  color:white;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.work{
+  position:relative;
+  overflow:hidden;
+  border-radius:25px;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+
+.work img{
+  height:360px;
+  object-fit:cover;
+  transition:.6s;
+}
+
+.work:hover img{
+  transform:scale(1.06);
+}
+
+.work-info{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:50px 20px 20px;
+  color:white;
+  background:linear-gradient(transparent,rgba(0,0,0,.72));
+  transform:translateY(15px);
+  transition:.4s;
+}
+
+.work:hover .work-info{
+  transform:translateY(0);
+}
+
+.work-info h3{
+  font-size:18px;
+}
+
+.work-info p{
+  font-size:12px;
+  opacity:.85;
+}
+
+/* ---------- SERVICES ---------- */
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.service{
+  background:white;
+  padding:35px 25px;
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  transition:.35s;
+}
+
+.service:hover{
+  transform:translateY(-8px);
+}
+
+.service-icon{
+  width:55px;
+  height:55px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--pink-light);
+  color:var(--pink-dark);
+  font-size:24px;
+  margin-bottom:20px;
+}
+
+.service h3{
+  margin-bottom:10px;
+}
+
+.service p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ---------- PRODUCTS ---------- */
+
+.products{
+  background:#fff5f7;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.product{
+  background:white;
+  padding:25px;
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  transition:.35s;
+}
+
+.product:hover{
+  transform:translateY(-7px);
+}
+
+.product-visual{
+  height:300px;
+  background:#fff7f8;
+  border-radius:25px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:25px;
+}
+
+/* foundation mockup */
+.foundation{
+  width:90px;
+  height:180px;
+  background:linear-gradient(90deg,#ead1bb,#f7e2cf,#d8bba2);
+  border-radius:18px 18px 10px 10px;
+  box-shadow:0 20px 35px rgba(90,50,30,.18);
+  position:relative;
+}
+
+.foundation:before{
+  content:"GLOWYTEE";
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:65px;
+  font-family:'Playfair Display',serif;
+  font-size:11px;
+  letter-spacing:2px;
+  color:#805f50;
+}
+
+.foundation:after{
+  content:"FOUNDATION";
+  position:absolute;
+  left:10px;
+  right:10px;
+  top:92px;
+  font-size:7px;
+  letter-spacing:1px;
+  color:#9b7565;
+}
+
+.cap{
+  position:absolute;
+  top:-24px;
+  left:8px;
+  width:74px;
+  height:30px;
+  background:#d5c0ad;
+  border-radius:8px 8px 3px 3px;
+}
+
+/* lipstick mockup */
+.lipstick{
+  width:65px;
+  height:185px;
+  background:linear-gradient(90deg,#b85c73,#ef9cad,#a74760);
+  border-radius:8px 8px 5px 5px;
+  position:relative;
+  box-shadow:0 20px 30px rgba(120,50,70,.2);
+}
+
+.lipstick:before{
+  content:"GLOWYTEE";
+  position:absolute;
+  top:80px;
+  left:-4px;
+  width:73px;
+  font-family:'Playfair Display',serif;
+  font-size:8px;
+  color:white;
+  letter-spacing:1px;
+  transform:rotate(90deg);
+}
+
+.lip-top{
+  position:absolute;
+  top:-38px;
+  left:5px;
+  width:55px;
+  height:45px;
+  background:#d87b8e;
+  border-radius:8px 8px 18px 18px;
+}
+
+.toner{
+  width:115px;
+  height:185px;
+  background:linear-gradient(90deg,#f7dfe5,#fff,#f0c8d2);
+  border-radius:18px;
+  position:relative;
+  box-shadow:0 20px 35px rgba(130,70,90,.15);
+}
+
+.toner:before{
+  content:"GLOWYTEE";
+  position:absolute;
+  top:62px;
+  left:12px;
+  right:12px;
+  font-family:'Playfair Display',serif;
+  letter-spacing:2px;
+  color:#a76577;
+}
+
+.toner:after{
+  content:"TONER PADS";
+  position:absolute;
+  top:94px;
+  left:15px;
+  right:15px;
+  font-size:8px;
+  color:#b47b88;
+}
+
+.product h3{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+}
+
+.product p{
+  color:var(--muted);
+  font-size:13px;
+  margin:8px 0 15px;
+}
+
+.price{
+  color:var(--pink-dark);
+  font-weight:600;
+}
+
+/* ---------- SKINCARE ---------- */
+
+.skin-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.skin-card{
+  background:white;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.skin-card img{
+  height:260px;
+  object-fit:cover;
+}
+
+.skin-card div{
+  padding:22px;
+}
+
+.skin-card h3{
+  margin-bottom:8px;
+}
+
+.skin-card p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ---------- BOOKING ---------- */
+
+.booking{
+  background:linear-gradient(135deg,#fff7f8,#fce6eb);
+}
+
+.booking-box{
+  max-width:850px;
+  margin:auto;
+  background:white;
+  padding:45px;
+  border-radius:35px;
+  box-shadow:var(--shadow);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:13px;
+  color:#66575b;
+}
+
+.field input,
+.field select,
+.field textarea{
+  border:1px solid #ead5da;
+  background:#fffafb;
+  border-radius:16px;
+  padding:13px 15px;
+  outline:none;
+  transition:.3s;
+  color:var(--text);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 0 4px rgba(233,169,184,.12);
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.form-submit{
+  margin-top:22px;
+}
+
+/* ---------- CONTACT ---------- */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.contact-card{
+  background:white;
+  padding:35px;
+  border-radius:30px;
+  box-shadow:var(--shadow);
+}
+
+.contact-item{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid #f3e6e9;
+}
+
+.contact-item:last-child{
+  border:0;
+}
+
+.contact-icon{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  background:var(--pink-light);
+  color:var(--pink-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.socials{
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+}
+
+.social{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:var(--pink-light);
+  color:var(--pink-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  transition:.3s;
+}
+
+.social:hover{
+  background:var(--pink-dark);
+  color:white;
+  transform:translateY(-3px);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+  background:#3e3034;
+  color:white;
+  padding:55px 7% 25px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:50px;
+}
+
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  letter-spacing:4px;
+  font-size:30px;
+  color:#f4c3cd;
+}
+
+footer p{
+  color:#c9babe;
+  font-size:13px;
+  margin-top:12px;
+}
+
+.footer-title{
+  color:#f4c3cd;
+  margin-bottom:15px;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  color:#c9babe;
+  font-size:13px;
+}
+
+.copyright{
+  max-width:1200px;
+  margin:40px auto 0;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  color:#a9959a;
+  font-size:12px;
+}
+
+/* ---------- LOGIN MODAL ---------- */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(45,30,35,.55);
+  backdrop-filter:blur(7px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  padding:20px;
+}
+
+.modal.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:white;
+  padding:40px;
+  border-radius:30px;
+  position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.2);
+}
+
+.close{
+  position:absolute;
+  right:22px;
+  top:18px;
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+  color:#927d82;
+}
+
+.login-box h2{
+  font-family:'Playfair Display',serif;
+  font-size:35px;
+  margin-bottom:5px;
+}
+
+.login-box p{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:25px;
+}
+
+.login-field{
+  margin-bottom:15px;
+}
+
+.login-field input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ead5da;
+  border-radius:15px;
+  outline:none;
+}
+
+.login-submit{
+  width:100%;
+  margin-top:8px;
+}
+
+.demo{
+  text-align:center;
+  margin-top:15px;
+  font-size:11px;
+  color:#9d8a8f;
+}
+
+/* ---------- TOAST ---------- */
+
+.toast{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  background:#3e3034;
+  color:white;
+  padding:15px 20px;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.4s;
+  z-index:5000;
+  font-size:13px;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:950px){
+  .nav-links{
+    position:absolute;
+    top:78px;
+    left:0;
+    right:0;
+    background:white;
+    padding:20px;
+    flex-direction:column;
+    display:none;
+    box-shadow:var(--shadow);
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .hero-grid,
+  .about-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:120px;
+  }
+
+  .hero-text{
+    text-align:center;
+  }
+
+  .hero-text p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero-buttons{
+    justify-content:center;
+  }
+
+  .hero-image{
+    max-width:500px;
+    width:100%;
+    margin:auto;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .service-grid,
+  .product-grid,
+  .skin-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+  section{
+    padding:80px 5%;
+  }
+
+  .hero-text h1{
+    font-size:50px;
+  }
+
+  .hero-image img{
+    height:450px;
+  }
+
+  .hero-card{
+    left:10px;
+  }
+
+  .section-title h2{
+    font-size:34px;
+  }
+
+  .gallery,
+  .service-grid,
+  .product-grid,
+  .skin-grid,
+  .form-grid,
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .booking-box{
+    padding:25px;
+  }
+
+  .info-box{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">GLOW<span>.Studio</span></a>
-            <ul class="nav-menu">
-                <li><a href="#artist" class="nav-link">เกี่ยวกับช่าง</a></li>
-                <li><a href="#looks" class="nav-link">ลุค & ราคา</a></li>
-                <li><a href="#gallery" class="nav-link">ผลงาน</a></li>
-                <li><a href="#products" class="nav-link">สินค้าแบรนด์</a></li>
-                <li><a href="#reviews" class="nav-link">รีวิว</a></li>
-                <li><a href="#articles" class="nav-link">บทความ</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
-                <li><a href="#contact" class="nav-link">ติดต่อ</a></li>
-            </ul>
-            <a href="#contact" class="btn btn-primary">จองคิวแต่งหน้า</a>
+<!-- LOADING -->
+<div class="loader" id="loader">
+  <div class="loader-box">
+    <div class="loader-logo">GLOWYTEE</div>
+    <div class="loader-line"><span></span></div>
+    <small>MAKEUP • BEAUTY • GLOW</small>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header>
+  <nav class="nav">
+    <a href="#home" class="logo">GLOWYTEE</a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">หน้าหลัก</a>
+      <a href="#about">ช่างแต่งหน้า</a>
+      <a href="#portfolio">ผลงาน</a>
+      <a href="#products">ผลิตภัณฑ์</a>
+      <a href="#skincare">สกินแคร์</a>
+      <a href="#booking">จองคิว</a>
+      <a href="#contact">ติดต่อ</a>
+      <button class="login-btn" onclick="openLogin()">เข้าสู่ระบบ</button>
+    </div>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+
+    <div class="hero-text">
+      <small>MAKEUP ARTIST • BEAUTY STUDIO</small>
+
+      <h1>
+        Your Beauty,<br>
+        <span>Your Glow.</span>
+      </h1>
+
+      <p>
+        GLOWYTEE พื้นที่สำหรับคนที่อยากค้นพบความสวย
+        ในแบบของตัวเอง ผ่านงานแต่งหน้าที่ละเอียด
+        เป็นธรรมชาติ และเข้ากับตัวตนของคุณ
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#booking" class="btn">จองช่างแต่งหน้า</a>
+        <a href="#portfolio" class="btn btn-outline">ดูผลงาน</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=85"
+        alt="GLOWYTEE Makeup Artist">
+      <div class="hero-card">
+        <strong>FREDDY</strong>
+        Makeup Artist • 18
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+
+    <div class="about-grid">
+
+      <div class="about-photo">
+        <img
+          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=900&q=85"
+          alt="Freddy Makeup Artist">
+      </div>
+
+      <div class="about-text">
+        <small style="color:#c8788c;letter-spacing:3px;">
+          ABOUT THE ARTIST
+        </small>
+
+        <h2>Meet Freddy</h2>
+
+        <p>
+          สวัสดีค่ะ เฟรดดี้ค่ะ ช่างแต่งหน้าผู้ก่อตั้ง
+          GLOWYTEE อายุ 18 ปี ปัจจุบันกำลังศึกษาอยู่ที่
+          วิทยาลัยเทคนิคนครราชสีมา
+        </p>
+
+        <p>
+          เฟรดดี้เริ่มทำธุรกิจแต่งหน้าอย่างจริงจังมาเป็นเวลา
+          2 ปี โดยตั้งใจสร้างลุคที่ทำให้ลูกค้ารู้สึกมั่นใจ
+          และยังคงความเป็นตัวเองเอาไว้
+        </p>
+
+        <p>
+          ไม่ว่าจะเป็นลุคสาวไทย สไตล์เกาหลี สาวจีน
+          ญี่ปุ่น หรือ Fantasy Makeup
+          GLOWYTEE พร้อมออกแบบลุคให้เหมาะกับคุณ
+        </p>
+
+        <div class="info-box">
+          <div class="info">
+            <strong>18</strong>
+            อายุ
+          </div>
+
+          <div class="info">
+            <strong>2+</strong>
+            ปีประสบการณ์
+          </div>
+
+          <div class="info">
+            <strong>100%</strong>
+            ตั้งใจทุกลุค
+          </div>
         </div>
-    </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <h1>รังสรรค์ความงามที่เป็นคุณ <br><span style="color: var(--primary-dark);">อย่างเพอร์เฟกต์</span></h1>
-                    <p>บริการแต่งหน้าเจ้าสาว ออกงาน ถ่ายแบบ โดยช่างแต่งหน้ามืออาชีพ พร้อมคัดสรรเครื่องสำอางแบรนด์เนมชั้นนำระดับโลก เพื่อผิวหน้าเปล่งออร่าตลอดทั้งวัน</p>
-                    <div style="display: flex; gap: 15px;">
-                        <a href="#looks" class="btn btn-primary">เลือกลุคแต่งหน้า</a>
-                        <a href="#artist" class="btn btn-outline">รู้จักคุณเฟรดดี้</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <h3>10+</h3>
-                            <p>ปีประสบการณ์</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>2,500+</h3>
-                            <p>ลูกค้าประทับใจ</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>100%</h3>
-                            <p>เครื่องสำอางแท้</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-img-wrapper">
-                    <!-- รูปคนแต่งหน้าสวยงาม หน้าตรง คมชัด -->
-                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1000&q=80" alt="แต่งหน้าโปรเฟสชันนอล" class="hero-img">
-                </div>
-            </div>
+        <a href="#booking" class="btn">เริ่มต้นจองคิว</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+
+  <div class="container">
+
+    <div class="section-title">
+      <small>PORTFOLIO</small>
+      <h2>Makeup Looks</h2>
+      <p>
+        รวมผลงานแต่งหน้าหลากหลายสไตล์
+        เพื่อให้คุณเลือก Inspiration ที่ตรงกับตัวเอง
+      </p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" onclick="filterWorks('all',this)">ทั้งหมด</button>
+      <button class="filter" onclick="filterWorks('thai',this)">Thai</button>
+      <button class="filter" onclick="filterWorks('korean',this)">Korean</button>
+      <button class="filter" onclick="filterWorks('chinese',this)">Chinese</button>
+      <button class="filter" onclick="filterWorks('japanese',this)">Japanese</button>
+      <button class="filter" onclick="filterWorks('fantasy',this)">Fantasy</button>
+    </div>
+
+    <div class="gallery">
+
+      <div class="work" data-style="thai">
+        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=85" alt="Thai Makeup">
+        <div class="work-info">
+          <h3>Thai Soft Glam</h3>
+          <p>Elegant • Natural • Soft</p>
         </div>
-    </section>
+      </div>
 
-    <!-- ARTIST SECTION (คุณเฟรดดี้) -->
-    <section id="artist" class="section-padding">
-        <div class="container">
-            <div class="artist-section">
-                <div class="artist-grid">
-                    <!-- รูปช่างแต่งหน้ากำลังแต่งหน้าให้ลูกค้าอย่างตั้งใจ -->
-                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="คุณเฟรดดี้ Master Artist" class="artist-img">
-                    <div class="artist-content">
-                        <h3>คุณเฟรดดี้ (Master Artist & Founder)</h3>
-                        <span class="artist-title">ผู้เชี่ยวชาญด้านการแต่งหน้าปรับโครงหน้า ปรับสมดุลผิว และงานผิวเนียนใสฉ่ำวาว</span>
-                        <p class="artist-bio">
-                            คุณเฟรดดี้จบการศึกษาด้านศิลปะและการแต่งหน้าโปรเฟสชันนอล มีประสบการณ์ในวงการแฟชั่น รันเวย์ และงานแต่งงานระดับพรีเมียมกว่า 10 ปี ด้วยเทคนิคเฉพาะตัวในการเน้นจุดเด่น ดึงเสน่ห์ของลูกค้าแต่ละท่านออกมาอย่างเป็นธรรมชาติที่สุด
-                        </p>
-                        <p class="artist-bio">
-                            นอกจากนี้ คุณเฟรดดี้ยังเป็นผู้คิดค้นและพัฒนาสกินแคร์แบรนด์ **GLOW Cosmetics** ที่ช่วยเตรียมผิวหน้าของลูกค้าให้พร้อมสำหรับการแต่งหน้า เพื่อให้เครื่องสำอางติดทนนาน 18 ชั่วโมงโดยไม่เป็นคราบ
-                        </p>
-                        <div class="artist-badges">
-                            <div class="badge-item">
-                                <i class="fa-solid fa-award"></i>
-                                <span>ประกาศนียบัตรขั้นสูง สถาบันแต่งหน้า London Fashion Makeup</span>
-                            </div>
-                            <div class="badge-item">
-                                <i class="fa-solid fa-crown"></i>
-                                <span>ช่างแต่งหน้ายอดเยี่ยมสำหรับเจ้าสาวประจำปี 2024</span>
-                            </div>
-                            <div class="badge-item">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                <span>ผู้เชี่ยวชาญด้านการผสมเฉดสีรองพื้นสำหรับผิวคนไทย</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="work" data-style="korean">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85" alt="Korean Makeup">
+        <div class="work-info">
+          <h3>Korean Glow</h3>
+          <p>Glass Skin • Fresh • Youthful</p>
         </div>
-    </section>
+      </div>
 
-    <!-- LOOKS & PRICES (9 ลุค - รูปคนแต่งหน้าจริงไม่ซ้ำ) -->
-    <section id="looks" class="section-padding" style="background-color: #fafafa;">
-        <div class="container">
-            <div class="section-title">
-                <h2>9 ลุคแต่งหน้ายอดนิยม</h2>
-                <p>เลือกสไตล์ที่เหมาะกับโอกาสพิเศษของคุณ รังสรรค์ด้วยผลิตภัณฑ์พรีเมียม</p>
-            </div>
-            <div class="looks-grid">
-                
-                <!-- 1. สายฝอ Glam -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="สายฝอ Glam" class="look-img">
-                    <div class="look-info">
-                        <h3>1. ลุคสายฝอจัดเต็ม (Hollywood Glam)</h3>
-                        <p>คอนทัวร์กรอบหน้าคมชัด คิ้วตั้งฟู สโมกกี้อายโทนน้ำตาลทอง ปากอวบอิ่มทรงพุ่ม</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿3,500</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. สตรีทอังกฤษ -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80" alt="สตรีทอังกฤษ" class="look-img">
-                    <div class="look-info">
-                        <h3>2. ลุคสตรีทอังกฤษ (London Chic)</h3>
-                        <p>แต่งหน้าสไตล์ชาวยุโรป เรียบหรู ดูแพง งานผิว Semi-matte คุมโทนนู้ดเบจผู้ดี</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿3,000</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. เจ้าสาวชุดไทย -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="เจ้าสาวชุดไทย" class="look-img">
-                    <div class="look-info">
-                        <h3>3. ลุคเจ้าสาวชุดไทยพิธีเช้า</h3>
-                        <p>เน้นความหวานละมุน งานผิวเนียนละเอียด โทนส้มอิฐ-ส้มพาสเทล ขับผิวออร่า</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿8,500</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. เกาหลีโกลว์ -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="เกาหลีโกลว์" class="look-img">
-                    <div class="look-info">
-                        <h3>4. ลุคเกาหลีโกลว์ (K-Glass Skin)</h3>
-                        <p>งานผิวฉ่ำวาวอิ่มน้ำ ดอลลี่อายใสสไตล์เกาหลี ปากกระจับดูอ่อนเยาว์</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿2,800</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. เจ้าสาวชุดราตรี -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="เจ้าสาวชุดราตรี" class="look-img">
-                    <div class="look-info">
-                        <h3>5. ลุคเจ้าสาวชุดราตรี (Modern Bridal)</h3>
-                        <p>ลุคหรูหราออร่าพุ่ง แต่งตาประกายชิมเมอร์ ละมุนตา ไม่ดรอปตลอดคืน</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿9,500</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. รับปริญญา -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="รับปริญญา" class="look-img">
-                    <div class="look-info">
-                        <h3>6. ลุครับปริญญาเรียบหรู</h3>
-                        <p>แต่งหน้าแน่น คุมมัน กันเหงื่อ กันน้ำ สวยเป๊ะ ทนทานถ่ายรูปขึ้นกล้องกลางแจ้ง</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿2,500</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. ออกงาน Gala -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="ออกงาน Gala Night" class="look-img">
-                    <div class="look-info">
-                        <h3>7. ลุคออกงาน Gala Night</h3>
-                        <p>แต่งหน้าโดดเด่นสู้แสงไฟงานราตรี เน้นดวงตาทรงเสน่ห์ ลิปสติกสีชัดติดทน</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿3,200</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. ถ่ายแบบ Editorial -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80" alt="ถ่ายแบบ Editorial" class="look-img">
-                    <div class="look-info">
-                        <h3>8. ลุคถ่ายแบบ & Studio (High Fashion)</h3>
-                        <p>เทคนิคแต่งหน้าลงรายละเอียดพิเศษเพื่อกล้อง HD เก็บกรอบหน้า มิติชัดทุกมุม</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿4,000</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 9. เพื่อนเจ้าสาว -->
-                <div class="look-card">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80" alt="เพื่อนเจ้าสาว" class="look-img">
-                    <div class="look-info">
-                        <h3>9. ลุคเพื่อนเจ้าสาว (Bridesmaid Soft)</h3>
-                        <p>แต่งหน้าคุมธีมงาน แต่งโทนพาสเทลสดใส ไม่แย่งซีนเจ้าสาวแต่ยังคงความสวยเป๊ะ</p>
-                        <div class="look-price-bar">
-                            <span class="price">฿2,200</span>
-                            <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">จองคิว</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="work" data-style="chinese">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=85" alt="Chinese Makeup">
+        <div class="work-info">
+          <h3>Chinese Beauty</h3>
+          <p>Sharp • Elegant • Modern</p>
         </div>
-    </section>
+      </div>
 
-    <!-- GALLERY SECTION -->
-    <section id="gallery" class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>แกลเลอรีผลงาน</h2>
-                <p>ภาพผลงานจริงโดยไม่มีการรีทัช เพื่อแสดงงานผิวที่แท้จริง</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=600&q=80" alt="Work 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" alt="Work 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Work 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Work 4">
-                </div>
-            </div>
+      <div class="work" data-style="japanese">
+        <img src="https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=700&q=85" alt="Japanese Makeup">
+        <div class="work-info">
+          <h3>Japanese Soft Girl</h3>
+          <p>Sweet • Soft • Romantic</p>
         </div>
-    </section>
+      </div>
 
-    <!-- BRAND COSMETICS -->
-    <section id="products" class="section-padding" style="background-color: var(--bg-light);">
-        <div class="container">
-            <div class="section-title">
-                <h2>เครื่องสำอางแบรนด์เนมที่เราใช้</h2>
-                <p>มั่นใจในคุณภาพ ความเป็นธรรมชาติติดทน และปลอดภัยต่อผิวของคุณ</p>
-            </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=80" alt="Dior Foundation" class="product-img">
-                    <span class="product-brand">DIOR</span>
-                    <h4 class="product-title">Forever Skin Glow Foundation</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">รองพื้นงานผิวเรียบเนียนฉ่ำวาวระดับไฮเอนด์</p>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=500&q=80" alt="Charlotte Tilbury Powder" class="product-img">
-                    <span class="product-brand">CHARLOTTE TILBURY</span>
-                    <h4 class="product-title">Airbrush Flawless Finish</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">แป้งอัดแข็งเบลอรูขุมขน นุ่มละมุนไร้ที่ติ</p>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=80" alt="TOM FORD Eyeshadow" class="product-img">
-                    <span class="product-brand">TOM FORD BEAUTY</span>
-                    <h4 class="product-title">Eye Color Quad Eyeshadow</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">พาเลตต์อายแชโดว์พิกเมนต์แน่น หรูหรา</p>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=500&q=80" alt="GLOW Primer" class="product-img">
-                    <span class="product-brand">GLOW COSMETICS</span>
-                    <h4 class="product-title">Prep & Prime Miracle Serum</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">เซรั่มเตรียมผิวก่อนแต่งหน้า สูตรคุณเฟรดดี้</p>
-                </div>
-            </div>
+      <div class="work" data-style="fantasy">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=85" alt="Fantasy Makeup">
+        <div class="work-info">
+          <h3>Fantasy Glow</h3>
+          <p>Creative • Artistic • Dreamy</p>
         </div>
-    </section>
+      </div>
 
-    <!-- REVIEWS -->
-    <section id="reviews" class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>เสียงสะท้อนจากลูกค้า</h2>
-                <p>ความประทับใจจริงจากเจ้าสาวและลูกค้าที่เคยใช้บริการกับคุณเฟรดดี้</p>
-            </div>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"แต่งหน้าวันแต่งงานกับคุณเฟรดดี้ ประทับใจมากค่ะ หน้าไม่ดรอปเลยตั้งแต่ 6 โมงเช้าจนจบงานดึก เพื่อนๆ ชมว่าสวยหวานธรรมชาติสุดๆ"</p>
-                    <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="คุณมุก" class="client-avatar">
-                        <div>
-                            <h4 style="font-size: 1rem;">คุณมุก & คุณนนท์</h4>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">เจ้าสาวงานแต่งงาน</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"จองลุคสายฝอกับคุณเฟรดดี้ไปออกงาน Gala ค่ะ คอนทัวร์เป๊ะมาก ถ่ายรูปขึ้นกล้องสุดๆ เครื่องสำอางที่ใช้หอมและเบาสบายหน้ามากค่ะ"</p>
-                    <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="คุณแพรวา" class="client-avatar">
-                        <div>
-                            <h4 style="font-size: 1rem;">คุณแพรวา</h4>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">งาน Gala Night</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="review-text">"แต่งหน้ารับปริญญากับคุณเฟรดดี้ ตากแดดทั้งวันเหงื่อออกเยอะมาก แต่เครื่องสำอางยังติดทน หน้าไม่เป็นคราบเลย ประทับใจมากๆ ครับ"</p>
-                    <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" alt="คุณเจน" class="client-avatar">
-                        <div>
-                            <h4 style="font-size: 1rem;">คุณบอส</h4>
-                            <span style="font-size: 0.85rem; color: var(--text-muted);">รับปริญญา ม.ธรรมศาสตร์</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="work" data-style="thai">
+        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=700&q=85" alt="Thai Bridal Makeup">
+        <div class="work-info">
+          <h3>Thai Bridal</h3>
+          <p>Classic • Elegant • Bridal</p>
         </div>
-    </section>
+      </div>
 
-    <!-- ARTICLES -->
-    <section id="articles" class="section-padding" style="background-color: #fafafa;">
-        <div class="container">
-            <div class="section-title">
-                <h2>บทความ & เคล็ดลับบิวตี้</h2>
-                <p>ความรู้การดูแลผิวและการแต่งหน้าจากประสบการณ์ตรงของคุณเฟรดดี้</p>
-            </div>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="เตรียมผิว" class="blog-img">
-                    <div class="blog-content">
-                        <h4>5 วิธีเตรียมผิวก่อนวันแต่งงาน 7 วัน ให้เครื่องสำอางติดทน</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">การเตรียมผิวสำคัญกว่าการแต่งหน้า เคล็ดลับเพิ่มความฉ่ำน้ำลดความมัน...</p>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" alt="เลือกลุค" class="blog-img">
-                    <div class="blog-content">
-                        <h4>เลือกลุคแต่งหน้าอย่างไรให้เข้ากับรูปหน้าและสไตล์ชุดราตรี</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">เทคนิคการวิเคราะห์โครงหน้าและการจับคู่โทนสีเมกอัปให้ส่งเสริมกัน...</p>
-                    </div>
-                </div>
-            </div>
+      <div class="work" data-style="korean">
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=700&q=85" alt="Korean Dewy Makeup">
+        <div class="work-info">
+          <h3>Dewy Korean</h3>
+          <p>Dewy • Clean • Minimal</p>
         </div>
-    </section>
+      </div>
 
-    <!-- FAQ -->
-    <section id="faq" class="section-padding">
-        <div class="container" style="max-width: 800px;">
-            <div class="section-title">
-                <h2>คำถามที่พบบ่อย (FAQ)</h2>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Q: ควรจองคิวแต่งหน้าล่วงหน้านานเท่าไร?</div>
-                <div class="faq-answer">A: สำหรับคิวเจ้าสาวแนะนำจองล่วงหน้า 3-6 เดือนครับ ส่วนงานออกงานทั่วไปหรือรับปริญญาแนะนำล่วงหน้า 2-4 สัปดาห์ครับ</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Q: มีบริการแต่งหน้านอกสถานที่หรือไม่?</div>
-                <div class="faq-answer">A: มีบริการแต่งหน้านอกสถานที่ทั้งในกรุงเทพฯ ปริมณฑล และต่างจังหวัดครับ (มีค่าเดินทางตามระยะทางจริง)</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Q: ใช้เวลาแต่งหน้าทำผมกี่ชั่วโมงต่อท่าน?</div>
-                <div class="faq-answer">A: บริการแต่งหน้าและทำผมใช้เวลาประมาณ 1.5 - 2 ชั่วโมงต่อท่าน เพื่อความละเอียดเรียบร้อยที่สุดครับ</div>
-            </div>
+      <div class="work" data-style="chinese">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85" alt="Chinese Glam">
+        <div class="work-info">
+          <h3>Modern Chinese Glam</h3>
+          <p>Bold • Chic • Luxury</p>
         </div>
-    </section>
+      </div>
 
-    <!-- CONTACT & FOOTER -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">GLOW<span>.Studio</span></div>
-                    <p style="color: #aaa; font-size: 0.95rem;">สตูดิโอแต่งหน้าโปรเฟสชันนอลโดยคุณเฟรดดี้ พร้อมเนรมิตความงามในวันสำคัญของคุณด้วยผลิตภัณฑ์ระดับพรีเมียม</p>
-                    <div class="social-links">
-                        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-btn"><i class="fa-brands fa-line"></i></a>
-                        <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px;">เมนูด่วน</h4>
-                    <ul style="color: #aaa; font-size: 0.9rem; line-height: 2;">
-                        <li><a href="#artist">เกี่ยวกับคุณเฟรดดี้</a></li>
-                        <li><a href="#looks">ลุค & ราคา</a></li>
-                        <li><a href="#gallery">ผลงาน</a></li>
-                        <li><a href="#products">สินค้าแบรนด์</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px;">เวลาทำการ</h4>
-                    <p style="color: #aaa; font-size: 0.9rem;">จันทร์ - อาทิตย์<br>05:00 น. - 20:00 น.<br>(รับคิวตามนัดหมาย)</p>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px;">ติดต่อนัดหมาย</h4>
-                    <p style="color: #aaa; font-size: 0.9rem; line-height: 2;">
-                        <i class="fa-solid fa-phone" style="color: var(--primary);"></i> 081-234-5678<br>
-                        <i class="fa-brands fa-line" style="color: var(--primary);"></i> @glowstudio<br>
-                        <i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> สุขุมวิท กรุงเทพมหานคร
-                    </p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 GLOW Studio & Cosmetics by Freddy. All rights reserved.</p>
-            </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+  <div class="container">
+
+    <div class="section-title">
+      <small>SERVICES</small>
+      <h2>Beauty Services</h2>
+      <p>
+        บริการแต่งหน้าที่ออกแบบตามโอกาสและสไตล์ของคุณ
+      </p>
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service">
+        <div class="service-icon">✦</div>
+        <h3>Everyday Makeup</h3>
+        <p>
+          ลุคแต่งหน้าเบา ๆ สำหรับวันพิเศษ
+          ถ่ายรูป คาเฟ่ หรือออกงานแบบสบาย ๆ
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">♡</div>
+        <h3>Event Makeup</h3>
+        <p>
+          แต่งหน้าสำหรับงานรับปริญญา งานแต่ง
+          งานเลี้ยง และโอกาสสำคัญ
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">✧</div>
+        <h3>Creative Makeup</h3>
+        <p>
+          ลุคแฟนตาซี Editorial หรือ Makeup
+          ที่ต้องการความโดดเด่นเป็นพิเศษ
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+
+  <div class="container">
+
+    <div class="section-title">
+      <small>GLOWYTEE BEAUTY</small>
+      <h2>Our Products</h2>
+      <p>
+        ผลิตภัณฑ์ Beauty ของ GLOWYTEE
+        ที่ออกแบบมาเพื่อผิวสวยในทุกวัน
+      </p>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- FOUNDATION -->
+      <div class="product">
+        <div class="product-visual">
+          <div class="foundation">
+            <div class="cap"></div>
+          </div>
         </div>
-    </footer>
+
+        <h3>GLOWYTEE Foundation</h3>
+
+        <p>
+          รองพื้นเนื้อบางเบา ให้ผิวดูเรียบเนียน
+          พร้อมลุค Natural Glow
+        </p>
+
+        <div class="price">฿690</div>
+      </div>
+
+      <!-- LIP -->
+      <div class="product">
+        <div class="product-visual">
+          <div class="lipstick">
+            <div class="lip-top"></div>
+          </div>
+        </div>
+
+        <h3>GLOWYTEE Lip</h3>
+
+        <p>
+          ลิปโทนสีสุภาพ ใช้ง่ายในชีวิตประจำวัน
+          พร้อมเติมสีให้ริมฝีปากดูมีชีวิตชีวา
+        </p>
+
+        <div class="price">฿390</div>
+      </div>
+
+      <!-- TONER -->
+      <div class="product">
+        <div class="product-visual">
+          <div class="toner"></div>
+        </div>
+
+        <h3>GLOWYTEE Toner Pads</h3>
+
+        <p>
+          Toner Pads สำหรับเตรียมผิว
+          ก่อนแต่งหน้า ให้ผิวดูสดชื่นและพร้อมรับ Makeup
+        </p>
+
+        <div class="price">฿490</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SKINCARE -->
+<section id="skincare">
+
+  <div class="container">
+
+    <div class="section-title">
+      <small>SKINCARE GUIDE</small>
+      <h2>Prepare Your Skin</h2>
+      <p>
+        ก่อนแต่งหน้า ผิวที่ได้รับการดูแลอย่างเหมาะสม
+        จะช่วยให้ Makeup ดูสวยและเป็นธรรมชาติมากขึ้น
+      </p>
+    </div>
+
+    <div class="skin-grid">
+
+      <div class="skin-card">
+        <img
+          src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85"
+          alt="Skincare">
+        <div>
+          <h3>01 — Cleanse</h3>
+          <p>
+            ทำความสะอาดผิวอย่างอ่อนโยน
+            ก่อนเริ่มขั้นตอนการบำรุง
+          </p>
+        </div>
+      </div>
+
+      <div class="skin-card">
+        <img
+          src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=85"
+          alt="Skincare Routine">
+        <div>
+          <h3>02 — Hydrate</h3>
+          <p>
+            เติมความชุ่มชื้นให้ผิว
+            เพื่อให้ Makeup เกาะผิวได้อย่างสวยงาม
+          </p>
+        </div>
+      </div>
+
+      <div class="skin-card">
+        <img
+          src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85"
+          alt="Beauty Skincare">
+        <div>
+          <h3>03 — Protect</h3>
+          <p>
+            อย่าลืมดูแลผิวและปกป้องผิวในชีวิตประจำวัน
+            เพื่อสุขภาพผิวที่ดีในระยะยาว
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+
+  <div class="container">
+
+    <div class="section-title">
+      <small>BOOKING</small>
+      <h2>Book Your Makeup</h2>
+      <p>
+        กรอกข้อมูลด้านล่างเพื่อส่งรายละเอียดการจอง
+        ให้ GLOWYTEE
+      </p>
+    </div>
+
+    <div class="booking-box">
+
+      <form id="bookingForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label>ชื่อ - นามสกุล</label>
+            <input type="text" id="customerName" placeholder="กรอกชื่อของคุณ" required>
+          </div>
+
+          <div class="field">
+            <label>เบอร์โทรศัพท์</label>
+            <input type="tel" placeholder="08X-XXX-XXXX" required>
+          </div>
+
+          <div class="field">
+            <label>วันที่ต้องการจอง</label>
+            <input type="date" required>
+          </div>
+
+          <div class="field">
+            <label>เวลาโดยประมาณ</label>
+            <input type="time" required>
+          </div>
+
+          <div class="field">
+            <label>งบประมาณ</label>
+            <select required>
+              <option value="">เลือกงบประมาณ</option>
+              <option>ต่ำกว่า 1,000 บาท</option>
+              <option>1,000 - 2,000 บาท</option>
+              <option>2,000 - 3,000 บาท</option>
+              <option>3,000 - 5,000 บาท</option>
+              <option>มากกว่า 5,000 บาท</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>ลุคที่ต้องการ</label>
+            <select required>
+              <option value="">เลือก Makeup Look</option>
+              <option>Thai Soft Glam</option>
+              <option>Korean Glow</option>
+              <option>Chinese Beauty</option>
+              <option>Japanese Soft Girl</option>
+              <option>Fantasy Makeup</option>
+              <option>ออกแบบลุคใหม่</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label>สถานที่แต่งหน้า</label>
+            <input type="text" placeholder="เช่น บ้านลูกค้า / โรงแรม / สตูดิโอ">
+          </div>
+
+          <div class="field full">
+            <label>รายละเอียดเพิ่มเติม</label>
+            <textarea placeholder="แจ้งรายละเอียดเพิ่มเติม เช่น งานรับปริญญา งานแต่ง เวลาเริ่มงาน หรือ Reference ที่ต้องการ"></textarea>
+          </div>
+
+        </div>
+
+        <div class="form-submit">
+          <button class="btn" type="submit">
+            ส่งคำขอจองคิว
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+  <div class="container">
+
+    <div class="section-title">
+      <small>CONTACT</small>
+      <h2>Let's Create Your Look</h2>
+      <p>
+        ติดต่อ GLOWYTEE เพื่อสอบถามคิว
+        รายละเอียดบริการ หรือพูดคุยเรื่อง Makeup Look
+      </p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-card">
+
+        <h3 style="font-family:'Playfair Display',serif;font-size:30px;">
+          GLOWYTEE
+        </h3>
+
+        <p style="color:#8d7c80;margin-top:8px;">
+          Makeup Artist & Beauty Studio
+        </p>
+
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <div>
+            <small>โทรศัพท์</small>
+            <strong style="display:block;">08X-XXX-XXXX</strong>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <small>Email</small>
+            <strong style="display:block;">glowytee.beauty@gmail.com</strong>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">◎</div>
+          <div>
+            <small>Instagram</small>
+            <strong style="display:block;">@glowytee</strong>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">♪</div>
+          <div>
+            <small>TikTok</small>
+            <strong style="display:block;">@glowytee</strong>
+          </div>
+        </div>
+
+        <div class="socials">
+          <a class="social" href="#" onclick="socialAlert('Instagram')">IG</a>
+          <a class="social" href="#" onclick="socialAlert('TikTok')">TK</a>
+          <a class="social" href="#" onclick="socialAlert('Facebook')">FB</a>
+          <a class="social" href="#" onclick="socialAlert('LINE')">L</a>
+        </div>
+
+      </div>
+
+      <div class="contact-card">
+
+        <h3 style="font-family:'Playfair Display',serif;font-size:30px;">
+          GLOWYTEE Philosophy
+        </h3>
+
+        <p style="color:#8d7c80;margin-top:15px;">
+          “Beauty is not about changing who you are.
+          It's about bringing out the best version of you.”
+        </p>
+
+        <div style="
+          margin-top:30px;
+          padding:25px;
+          background:#fff5f7;
+          border-radius:25px;
+        ">
+          <strong style="color:#c8788c;">
+            MAKEUP • SKINCARE • CONFIDENCE
+          </strong>
+
+          <p style="margin-top:10px;color:#8d7c80;">
+            ทุกลุคเริ่มต้นจากการรับฟังความต้องการ
+            ของลูกค้า เพราะเราเชื่อว่า Makeup ที่ดี
+            ควรทำให้คุณรู้สึกเป็นตัวเองมากขึ้น
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-logo">GLOWYTEE</div>
+      <p>
+        Makeup Artist & Beauty Studio
+        โดย Freddy
+      </p>
+      <p>
+        Nakhon Ratchasima, Thailand
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-title">MENU</div>
+      <div class="footer-links">
+        <a href="#home">หน้าหลัก</a>
+        <a href="#about">ช่างแต่งหน้า</a>
+        <a href="#portfolio">ผลงาน</a>
+        <a href="#products">ผลิตภัณฑ์</a>
+        <a href="#booking">จองคิว</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-title">GLOWYTEE</div>
+      <div class="footer-links">
+        <a href="#skincare">Skincare</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#" onclick="openLogin()">Login</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 GLOWYTEE. All Rights Reserved.
+  </div>
+
+</footer>
+
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+
+  <div class="login-box">
+
+    <button class="close" onclick="closeLogin()">×</button>
+
+    <h2>Welcome Back</h2>
+
+    <p>
+      เข้าสู่ระบบ GLOWYTEE
+    </p>
+
+    <form id="loginForm">
+
+      <div class="login-field">
+        <input
+          type="text"
+          id="username"
+          placeholder="Username"
+          required>
+      </div>
+
+      <div class="login-field">
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          required>
+      </div>
+
+      <button class="btn login-submit" type="submit">
+        เข้าสู่ระบบ
+      </button>
+
+    </form>
+
+    <div class="demo">
+      Demo Account: glowytee / 123456
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ---------- LOADING ---------- */
+
+window.addEventListener("load",function(){
+
+  setTimeout(function(){
+
+    document.getElementById("loader")
+      .classList.add("hide");
+
+  },900);
+
+});
+
+
+/* ---------- MOBILE MENU ---------- */
+
+function toggleMenu(){
+
+  document
+    .getElementById("navLinks")
+    .classList.toggle("open");
+
+}
+
+
+/* ---------- LOGIN ---------- */
+
+function openLogin(){
+
+  document
+    .getElementById("loginModal")
+    .classList.add("show");
+
+}
+
+function closeLogin(){
+
+  document
+    .getElementById("loginModal")
+    .classList.remove("show");
+
+}
+
+document
+  .getElementById("loginModal")
+  .addEventListener("click",function(e){
+
+    if(e.target === this){
+      closeLogin();
+    }
+
+  });
+
+
+document
+  .getElementById("loginForm")
+  .addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const username =
+      document.getElementById("username").value;
+
+    const password =
+      document.getElementById("password").value;
+
+    if(username === "glowytee" && password === "123456"){
+
+      closeLogin();
+
+      showToast(
+        "เข้าสู่ระบบ GLOWYTEE สำเร็จ ✨"
+      );
+
+    }else{
+
+      showToast(
+        "Username หรือ Password ไม่ถูกต้อง"
+      );
+
+    }
+
+  });
+
+
+/* ---------- PORTFOLIO FILTER ---------- */
+
+function filterWorks(category,button){
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+  button.classList.add("active");
+
+  document
+    .querySelectorAll(".work")
+    .forEach(function(work){
+
+      if(
+        category === "all" ||
+        work.dataset.style === category
+      ){
+
+        work.style.display = "block";
+
+      }else{
+
+        work.style.display = "none";
+
+      }
+
+    });
+
+}
+
+
+/* ---------- BOOKING ---------- */
+
+document
+  .getElementById("bookingForm")
+  .addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const name =
+      document.getElementById("customerName").value;
+
+    showToast(
+      "ขอบคุณคุณ " +
+      name +
+      " ✨ ส่งคำขอจองคิวเรียบร้อยแล้ว"
+    );
+
+    this.reset();
+
+  });
+
+
+/* ---------- TOAST ---------- */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },3500);
+
+}
+
+
+/* ---------- SOCIAL ---------- */
+
+function socialAlert(platform){
+
+  event.preventDefault();
+
+  showToast(
+    "ช่องทาง " +
+    platform +
+    " : @glowytee"
+  );
+
+}
+
+
+/* ---------- SMOOTH NAV ---------- */
+
+document
+  .querySelectorAll(".nav-links a")
+  .forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+      document
+        .getElementById("navLinks")
+        .classList.remove("open");
+
+    });
+
+  });
+
+
+/* ---------- SCROLL ANIMATION ---------- */
+
+const observer =
+  new IntersectionObserver(
+    function(entries){
+
+      entries.forEach(function(entry){
+
+        if(entry.isIntersecting){
+
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.08
+    }
+  );
+
+
+document
+  .querySelectorAll(
+    ".service,.product,.skin-card,.work,.contact-card,.about-text,.about-photo"
+  )
+  .forEach(function(element){
+
+    element.style.opacity = "0";
+    element.style.transform = "translateY(25px)";
+    element.style.transition =
+      "opacity .7s ease, transform .7s ease";
+
+    observer.observe(element);
+
+  });
+
+</script>
 
 </body>
 </html>
